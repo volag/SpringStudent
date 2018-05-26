@@ -13,7 +13,7 @@ public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 	String answer;
 	
 	@Override
-	public BasicResponseMapDto init(Map mapData) {
+	public QuestionAndAnswerRespDto init(Map mapData) {
 		
 		this.answerId = (Integer) mapData.get("id");
 		this.questionContext = (String) mapData.get("context");
@@ -22,4 +22,30 @@ public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 		return this;
 	}
 
+	public Integer getAnswerId() {
+		return answerId;
+	}
+
+	public void setAnswerId(Integer answerId) {
+		this.answerId = answerId;
+	}
+
+	public String getQuestionContext() {
+		return questionContext;
+	}
+
+	public void setQuestionContext(String questionContext) {
+		this.questionContext = questionContext;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	
+	
 }

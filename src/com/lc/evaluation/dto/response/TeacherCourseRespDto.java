@@ -6,7 +6,7 @@ import com.lc.evaluation.dao.CoreMapper;
 import com.lc.evaluation.dao.CourseMapper;
 import com.lc.evaluation.dto.basic.BasicResponseMapDto;
 
-public class StudentCourseRespDto implements BasicResponseMapDto{
+public class TeacherCourseRespDto implements BasicResponseMapDto{
 	
 	Integer coreId;
 	
@@ -14,10 +14,10 @@ public class StudentCourseRespDto implements BasicResponseMapDto{
 	
 	String courseType;
 	
-	public StudentCourseRespDto() {
+	public TeacherCourseRespDto() {
 	}
 	
-	public StudentCourseRespDto(Integer coreId, String courseName, String courseType) {
+	public TeacherCourseRespDto(Integer coreId, String courseName, String courseType) {
 		super();
 		this.coreId = coreId;
 		this.courseName = courseName;
@@ -26,7 +26,7 @@ public class StudentCourseRespDto implements BasicResponseMapDto{
 
 
 	@Override
-	public StudentCourseRespDto init(Map mapData) {
+	public TeacherCourseRespDto init(Map mapData) {
 		
 		this.coreId = (Integer) mapData.get(CoreMapper.id);
 		this.courseName = (String) mapData.get(CourseMapper.name);

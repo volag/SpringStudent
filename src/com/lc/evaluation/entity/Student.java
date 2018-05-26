@@ -1,12 +1,16 @@
 package com.lc.evaluation.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student extends User{
 
 	private Integer id;
 	private Date enterTime;
 	private String gradeId;
+	
+//	private List<Course> courses;
+//	private List<Teacher> teachers;
 	
 	public Integer getId() {
 		return id;

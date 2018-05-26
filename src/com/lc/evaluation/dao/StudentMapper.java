@@ -1,17 +1,23 @@
 package com.lc.evaluation.dao;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import com.lc.evaluation.dao.basic.BasicUserMapper;
 import com.lc.evaluation.entity.Student;
+import com.lc.evaluation.entity.basic.EntityUser;
+import com.lc.evaluation.util.PageUtil;
 
 public interface StudentMapper extends BasicUserMapper<Student>{
-	
+
 	/**
-	 * 找到该为学生所有的课程
+	 * student id
 	 * @param id
 	 * @return
 	 */
-	Map findCourses(Integer id);
-
+//	Map findCourses(Integer id);
+//	
+//	Map findQuestionsAndAnswers(Integer assessId);
+	
 }

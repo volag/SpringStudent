@@ -16,10 +16,8 @@ public interface BasicMapper<T extends EntityMine> {
 	 */
 	T findById(Integer id);
 	
+	List<T> findByMap(Map map);
 	
-	List<T> findByIds(List<Integer> ids);
-	
-	List<T> findByMap(Map maps);
 	
 	/**
 	 * Finding all count from sql

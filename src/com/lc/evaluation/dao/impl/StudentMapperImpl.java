@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.lc.evaluation.dao.StudentMapper;
 import com.lc.evaluation.dao.UserMapper;
 import com.lc.evaluation.entity.Student;
-import com.lc.evaluation.entity.basic.EntityUser;
+import com.lc.evaluation.entity.User;
 import com.lc.evaluation.util.PageUtil;
 
 @Repository
@@ -33,7 +33,7 @@ public class StudentMapperImpl implements StudentMapper{
 	}
 
 	@Override
-	public EntityUser findById(int id) {
+	public Student findById(Integer id) {
 		// TODO Auto-generated method stub
 		return studentMapper.findById(id);
 	}
@@ -45,42 +45,56 @@ public class StudentMapperImpl implements StudentMapper{
 	}
 
 	@Override
-	public List<EntityUser> findAll() {
+	public List<Student> findAll() {
 		// TODO Auto-generated method stub
 		return studentMapper.findAll();
 	}
 
 	@Override
-	public void delete(Collection<EntityUser> entities) {
+	public void delete(Collection<Student> entities) {
 		studentMapper.delete(entities);
 	}
 
 	@Override
-	public void update(EntityUser entity) {
+	public void update(Student entity) {
 		userMapper.update(entity);
 		studentMapper.update(entity);
 	}
 
 	@Override
-	public void add(EntityUser entity) {
+	public void add(Student entity) {
 		userMapper.add(entity);
 		studentMapper.add(entity);
 	}
 
 	@Override
-	public void addAll(Collection<EntityUser> entities) {
-		userMapper.addAll(entities);
+	public void addAll(Collection<Student> entities) {
+		
+		Collection<User> listU = (Collection)entities; 
+		userMapper.addAll(listU);
 		studentMapper.addAll(entities);
 	}
 
 	@Override
-	public PageUtil<EntityUser> findByPage(int page) {
+	public PageUtil<Student> findByPage(int page) {
 		return null;
 	}
 
+/*	@Override
+	public List<Student> findByIds(List<Integer> ids) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
 	@Override
+	public List<Student> findByMap(Map maps) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Override
 	public Map findCourses(Integer id) {
 		return studentMapper.findCourses(id);
-	}
+	}*/
 
 }

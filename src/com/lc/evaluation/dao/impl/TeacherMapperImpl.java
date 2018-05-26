@@ -2,15 +2,14 @@ package com.lc.evaluation.dao.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lc.evaluation.dao.StudentMapper;
 import com.lc.evaluation.dao.TeacherMapper;
 import com.lc.evaluation.dao.UserMapper;
 import com.lc.evaluation.entity.Teacher;
-import com.lc.evaluation.entity.basic.EntityUser;
 import com.lc.evaluation.util.PageUtil;
 
 @Repository
@@ -33,7 +32,7 @@ public class TeacherMapperImpl implements TeacherMapper{
 	}
 
 	@Override
-	public EntityUser findById(int id) {
+	public Teacher findById(Integer id) {
 		// TODO Auto-generated method stub
 		return teacherMapper.findById(id);
 	}
@@ -45,36 +44,44 @@ public class TeacherMapperImpl implements TeacherMapper{
 	}
 
 	@Override
-	public List<EntityUser> findAll() {
+	public List<Teacher> findAll() {
 		// TODO Auto-generated method stub
 		return teacherMapper.findAll();
 	}
 
 	@Override
-	public void delete(Collection<EntityUser> entities) {
+	public void delete(Collection<Teacher> entities) {
 		teacherMapper.delete(entities);
 	}
 
 	@Override
-	public void update(EntityUser entity) {
+	public void update(Teacher entity) {
 		userMapper.update(entity);
 		teacherMapper.update(entity);
 	}
 
 	@Override
-	public void add(EntityUser entity) {
+	public void add(Teacher entity) {
 		userMapper.add(entity);
 		teacherMapper.add(entity);
 	}
 
 	@Override
-	public void addAll(Collection<EntityUser> entities) {
-		userMapper.addAll(entities);
+	public void addAll(Collection<Teacher> entities) {
+		
+		Collection c = entities; 
+		userMapper.addAll(c);
 		teacherMapper.addAll(entities);
 	}
 
 	@Override
-	public PageUtil<EntityUser> findByPage(int page) {
+	public PageUtil<Teacher> findByPage(int page) {
+		return null;
+	}
+
+	@Override
+	public List<Teacher> findByMap(Map maps) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

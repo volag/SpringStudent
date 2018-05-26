@@ -63,7 +63,7 @@ public class Log implements EntityMine{
 		this.realName = realName;
 	}
 
-	public int getUserType() {
+	public Integer getUserType() {
 		return userType;
 	}
 
