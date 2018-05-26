@@ -50,8 +50,8 @@ public class AdminMapperImpl implements AdminMapper{
 	}
 
 	@Override
-	public void delete(Collection<Admin> entities) {
-		adminMapper.delete(entities);
+	public void delete(List<Integer> ids) {
+		adminMapper.delete(ids);
 	}
 
 	@Override

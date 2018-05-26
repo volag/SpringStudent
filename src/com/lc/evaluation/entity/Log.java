@@ -1,6 +1,6 @@
 package com.lc.evaluation.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.lc.evaluation.entity.basic.EntityMine;
 

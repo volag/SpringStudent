@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.UserMapper">
+	<resultMap type="User" id="UserResult">
+		<id property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="userType" column="user_type" />
+		<result property="avatarPath" column="avatar_path" />
+		<result property="birthday" column="birthday" />
+		<result property="address" column="address" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="realName" column="real_name" />
+		<result property="sex" column="sex" />
+	</resultMap>
+	
+	<select id="findByUserName" resultMap="UserResult">
+		select * from t_user where
+		user_name=#{userName}
+	</select>
+	
+	<select id="findPasswordByUserName" resultType="java.lang.String">
+		select password
+		from t_user 
+		where user_name=#{userName}
+	</select>
+	
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_user 
+	</select>
+
+	<select id="findById" resultMap="UserResult">
+		select * from t_user where id =
+		#{id}
+	</select>
+
+	
+
+	<select id="findAll" resultMap="UserResult">
+		select * from t_user
+	</select>
+
+	<insert id="add" parameterType="User">
+		insert into t_user(
+		user_name,password,avatar_path,
+		user_type,birthday,address,phone_num,real_name,sex)
+		values(
+		#{userName},#{password},#{avatarPath},
+		#{userType},#{birthday},#{address},#{phoneNum},#{realName},#{sex})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_user(
+		user_name,password,avatar_path,
+		user_type,birthday,address,phone_num,real_name,sex)
+		values
+		<foreach collection="list" item="user" separator=",">
+			(
+			#{user.userName},#{user.password},#{user.avatarPath},
+			#{user.userType},#{user.birthday},#{user.address},#{user.phoneNum},#{user.realName},#{user.sex})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_user
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="ent" index="i">
+			#{ent.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="User">
+		update t_user
+		<set>
+			<if test="userName != null and userName !=''">
+				user_name = #{userName},
+			</if>
+			<if test="password != null and password !=''">
+				password = #{password},
+			</if>
+			<if test="avatarPath != null and avatarPath !=''">
+				avatar_path = #{avatarPath},
+			</if>
+			<if test="userType != null and userType !=''">
+				user_type = #{userType},
+			</if>
+			<if test="birthday != null and birthday !=''">
+				birthday = #{birthday},
+			</if>
+			<if test="address != null and address !=''">
+				address = #{address},
+			</if>
+			<if test="phoneNum != null and phoneNum !=''">
+				phone_num = #{phoneNum},
+			</if>
+			<if test="realName != null and realName !=''">
+				real_name = #{realName},
+			</if>
+			<if test="sex != null and sex !=''">
+				sex = #{sex}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper> 

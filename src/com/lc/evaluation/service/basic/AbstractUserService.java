@@ -32,6 +32,16 @@ public abstract class AbstractUserService<T extends EntityUser>
 		
 	}
 	
+	final public boolean modifyPassword(String userName, String oldPassword, String newPassword){
+		T entity = userMapper.findByUserName(userName);
+		if(entity.getPassword().equals(oldPassword)){
+			entity.setPassword(newPassword);
+			userMapper.update(entity);
+			return true;
+		}
+		return false;
+	}
+	
 	
 	final public boolean logIn(BasicRequestUserDto<T> user){
 		

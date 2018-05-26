@@ -46,6 +46,10 @@ public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 		this.answer = answer;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "QuestionAndAnswerRespDto [answerId=" + answerId + ", questionContext=" + questionContext + ", answer="
+				+ answer + "]";
+	}
+
 }

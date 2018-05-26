@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.AssessTimeSectionMapper">
+    <resultMap type="AssessTimeSection" id="AssessTimeSectionResult">
+		<id property="id" column="id"/>
+		<result property="startTime" column="start_time"/>
+		<result property="endTime" column="end_time"/>
+	</resultMap>
+
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_assess_time
+	</select>
+
+	<select id="findById" resultMap="AssessTimeSectionResult">
+		select * from t_assess_time where id = #{id}
+	</select>
+
+	<select id="findAll" resultMap="AssessTimeSectionResult">
+		select * from t_assess_time
+	</select>
+
+	<insert id="add" parameterType="assessTimeSection">
+		insert into t_assess_time(start_time,end_time)
+		values(#{startTime},#{endTime})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_assess_time(
+		start_time,end_time)
+		values
+		<foreach collection="list" item="assessTimeSection" separator=",">
+			(#{assessTimeSection.startTime},#{assessTimeSection.endTime})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_assess_time
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="assessTimeSection" index="i">
+			#{assessTimeSection.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="assessTimeSection">
+		update t_assess_time
+		<set>
+			<if test="startTime != null and startTime !=''">
+				start_time = #{startTime},
+			</if>
+			<if test="endTime != null and endTime !=''">
+				end_time = #{endTime},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper> 

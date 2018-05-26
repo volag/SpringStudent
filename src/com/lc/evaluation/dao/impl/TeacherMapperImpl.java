@@ -50,8 +50,8 @@ public class TeacherMapperImpl implements TeacherMapper{
 	}
 
 	@Override
-	public void delete(Collection<Teacher> entities) {
-		teacherMapper.delete(entities);
+	public void delete(List<Integer> ids) {
+		teacherMapper.delete(ids);
 	}
 
 	@Override

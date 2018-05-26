@@ -5,11 +5,11 @@ import java.util.Date;
 import com.lc.evaluation.entity.basic.EntityMine;
 
 /**
- * ÆÀ½ÌÊ±¼äÇø¼ä
+ * ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author 0001
  *
  */
-public class AssesssTimeSection implements EntityMine{
+public class AssessTimeSection implements EntityMine{
 
 	private Integer id;
 	private Date startTime; 

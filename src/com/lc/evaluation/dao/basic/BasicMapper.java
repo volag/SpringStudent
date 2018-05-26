@@ -17,8 +17,6 @@ public interface BasicMapper<T extends EntityMine> {
 	T findById(Integer id);
 	
 	List<T> findByMap(Map map);
-	
-	
 	/**
 	 * Finding all count from sql
 	 * @return
@@ -35,7 +33,7 @@ public interface BasicMapper<T extends EntityMine> {
 	 * to delete entities, one or more
 	 * @param entities
 	 */
-	void delete(Collection<T> entities);
+	void delete(List<Integer> ids);
 	
 	/**
 	 * delete all.

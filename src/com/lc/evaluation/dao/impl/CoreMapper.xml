@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.CoreMapper">
+    <resultMap type="Core" id="CoreResult">
+		<id property="id" column="id"/>
+		<result property="studentId" column="t_student_id"/>
+		<result property="courseId" column="t_course_id"/>
+		<result property="teacherId" column="t_teacher_id"/>
+	</resultMap>
+
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_core
+	</select>
+
+	<select id="findById" resultMap="CoreResult">
+		select * from t_core where id = #{id}
+	</select>
+
+	<select id="findAll" resultMap="CoreResult">
+		select * from t_core
+	</select>
+
+	<insert id="add" parameterType="core">
+		insert into t_core(t_student_id,t_course_id,t_teacher_id)
+		values(#{studentId},#{courseId},#{teacherId})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_core(
+		t_student_id,t_course_id,t_teacher_id)
+		values
+		<foreach collection="list" item="core" separator=",">
+			(#{studentId},#{courseId},#{teacherId})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_core
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="core" index="i">
+			#{core.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="core">
+		update t_core
+		<set>
+			<if test="studentId != null and studentId !=''">
+				t_student_id = #{studentId},
+			</if>
+			<if test="courseId != null and courseId !=''">
+				t_course_id = #{courseId},
+			</if>
+			<if test="teacherId != null and teacherId !=''">
+				t_teacher_id = #{teacherId},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper> 

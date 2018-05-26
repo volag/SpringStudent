@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.QuestionMapper">
+    <resultMap type="Question" id="QuestionResult">
+		<id property="id" column="id"/>
+		<result property="context" column="context"/>
+	</resultMap>
+
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_question
+	</select>
+
+	<select id="findById" resultMap="QuestionResult">
+		select * from t_question where id = #{id}
+	</select>
+
+	<select id="findAll" resultMap="QuestionResult">
+		select * from t_question
+	</select>
+
+	<insert id="add" parameterType="Question">
+		insert into t_question(id,context)
+		values(#{id},#{context})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_question(
+		id,context)
+		values
+		<foreach collection="list" item="question" separator=",">
+			(#{question.id},#{question.context})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_question
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="question" index="i">
+			#{question.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="question">
+		update t_question
+		<set>
+			<if test="context != null and context !=''">
+				context = #{context},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper> 

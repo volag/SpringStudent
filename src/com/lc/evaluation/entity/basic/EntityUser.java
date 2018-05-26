@@ -5,5 +5,7 @@ public interface EntityUser extends EntityMine{
 	String getUserName();
 	
 	String getPassword();
+	
+	void setPassword(String password);
 
 }

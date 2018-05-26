@@ -3,19 +3,81 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.evaluation.dao.LogMapper">
-	<resultMap type="Log" id="LogResult">
-		<id property="id" column="id" />
+    <resultMap type="Log" id="LogResult">
+		<id property="id" column="id"/>
 		<result property="startTime" column="start_time" />
 		<result property="endTime" column="end_time" />
-		<result property="action" column="action" />
+		<result property="action" column="action"/>
 		<result property="userName" column="user_name" />
-		<result property="realName" column="real_name" />
-		<result property="userType" column="user_type" />
+		<result property="realName" column="real_name"/>
+		<result property="userType" column="user_type"/>
 	</resultMap>
 
-	<select id="findAll" resultMap="LogResult">
+	<select id="findAll"  resultMap="LogResult">
 		select * from t_log
 	</select>
 	
+	<select id="findAllCount"  resultType="Long">
+		select * from t_log
+	</select>
+	
+	<select id="findById"  resultMap="LogResult">
+		select * from t_log where id = #{id}
+	</select>
+	
+	<insert id="add" parameterType="Log">
+		insert into t_log(
+		start_time,end_time,action,
+		user_name,real_name,user_type)
+		values(
+		#{startTime},#{endTime},#{action},
+		#{userName},#{realName},#{userType})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_log(
+		start_time,end_time,action,
+		user_name,real_name,user_type)
+		values
+		<foreach collection="list" item="log" separator=",">
+			(
+			#{log.startTime},#{log.endTime},#{log.action},
+		    #{log.userName},#{log.realName},#{log.userType})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_log
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="log" index="i">
+			#{log.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="Log">
+		update t_log
+		<set>
+			<if test="startTime != null and startTime !=''">
+				start_time = #{startTime},
+			</if>
+			<if test="endTime != null and endTime !=''">
+				end_time = #{endTime},
+			</if>
+			<if test="action != null and action !=''">
+				action = #{action},
+			</if>
+			<if test="userName != null and userName !=''">
+				user_name = #{userName},
+			</if>
+			<if test="realName != null and realName !=''">
+				real_name = #{realName},
+			</if>
+			<if test="userType != null and userType !=''">
+				user_type = #{userType}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
 	
 </mapper> 

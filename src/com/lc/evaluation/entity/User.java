@@ -30,6 +30,11 @@ public class User implements EntityUser{
 	public String getUserName() {
 		return userName;
 	}
+	
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	@Override
 	public String getPassword() {
@@ -99,5 +104,11 @@ public class User implements EntityUser{
 		this.sex = sex;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", avatarPath=" + avatarPath
+				+ ", userType=" + userType + ", birthday=" + birthday + ", address=" + address + ", phoneNum="
+				+ phoneNum + ", realName=" + realName + ", sex=" + sex + "]";
+	}
 
 }

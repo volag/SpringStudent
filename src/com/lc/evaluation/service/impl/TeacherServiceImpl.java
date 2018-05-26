@@ -56,11 +56,6 @@ public class TeacherServiceImpl extends AbstractUserService<Teacher>
 		return null;
 	}
 
-	@Override
-	public void delele(Serializable... ids) {
-
-	}
-
 	@Autowired
 	CourseMapper courseMapper;
 

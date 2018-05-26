@@ -13,12 +13,12 @@ public interface BasicService<T extends EntityMine> {
 
 	BasicResponseDto<T> query(Serializable id);
 
-	List<BasicResponseDto<T>> queryAll();
+	List<T> queryAll();
 
-	List<BasicResponseDto<T>> queryPage(int page);
+	List<T> queryPage(Integer page);
 
-	<DTO extends BasicRequestDto<T>> void update(DTO dto);
+	void update(T dto);
 
-	void delele(Serializable... ids);
+	void delele(List<Integer> ids);
 
 }

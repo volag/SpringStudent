@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.AnswerMapper">
+    <resultMap type="Answer" id="AnswerResult">
+		<id property="id" column="id"/>
+		<result property="assessId" column="t_assess_id" />
+		<result property="questionId" column="t_question_id" />
+		<result property="answer" column="answer" />
+	</resultMap>
+
+	<select id="findAll"  resultMap="AnswerResult">
+		select * from t_answer_question 
+	</select>
+	
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_answer_question 
+	</select>
+	
+	<select id="findById" resultMap="AnswerResult">
+		select * from t_answer_question  where id = #{id}
+	</select>
+	
+	<delete id="delete">
+		delete from t_answer_question 
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="answer" index="i">
+			#{answer.id}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="answer">
+		update t_answer_question 
+		<set>
+			<if test="id != null and id !=''">
+				id = #{id},
+			</if>
+			<if test="score != null and score !=''">
+				score = #{score},
+			</if>
+			<if test="advice != null and advice !=''">
+				advice = #{advice},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<insert id="add" parameterType="answer">
+		insert into t_answer_question (id,score,advice)
+		values(#{id},#{score},#{advice})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_answer_question (
+		id,score,advice)
+		values
+		<foreach collection="list" item="answer" separator=",">
+			(#{answer.id},#{answer.score},#{answer.advice})
+		</foreach>
+	</insert>
+	
+</mapper> 

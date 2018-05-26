@@ -13,7 +13,7 @@ import com.lc.evaluation.entity.Student;
 import com.lc.evaluation.entity.User;
 import com.lc.evaluation.util.PageUtil;
 
-@Repository
+@Repository("studentImpl")
 public class StudentMapperImpl implements StudentMapper{
 	
 	@Autowired
@@ -51,8 +51,8 @@ public class StudentMapperImpl implements StudentMapper{
 	}
 
 	@Override
-	public void delete(Collection<Student> entities) {
-		studentMapper.delete(entities);
+	public void delete(List<Integer> ids) {
+		studentMapper.delete(ids);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public interface BasicUserMapper<T extends EntityUser>
 	 * @return
 	 */
 	T findByUserName(String userName);
-
+	
 	String findPasswordByUserName(String userName);
 	
 	

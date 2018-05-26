@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.AdminMapper">
+    <resultMap type="Admin" id="AdminResult">
+		<id property="id" column="id"/>
+		<result property="userName" column="user_name"/>
+		<result property="password" column="password"/>
+		<result property="userType" column="user_type"/>
+		<result property="avatarPath" column="avatar_path"/>
+		<result property="birthday" column="birthday"/>
+		<result property="address" column="address"/>
+		<result property="phoneNum" column="phone_num"/>
+		<result property="realName" column="real_name"/>
+		<result property="sex" column="sex"/>
+	</resultMap>
+<!-- 	
+	<resultMap type="Teacher" id="TeacherMap">
+		<result property="id" column="id"/>
+		<result property="enterTime" column="enter_school_date"/>
+		<result property="gradeId" column="grade_id"/>
+	</resultMap> -->
+
+	<select id="findByUserName"  resultMap="AdminResult">
+		select * from t_admin t1,t_user t2 where t1.id=t2.id and t2.user_name=#{userName}
+	</select>
+	
+	<select id="findPasswordByUserName" resultType="java.lang.String">
+		select password from t_user where user_name = #{userName}
+	</select>
+	
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_admin
+	</select>
+
+	<select id="findById" resultMap="AdminResult">
+		select * from t_admin t1,t_user t2 where t1.id=t2.id and t1.id=#{id}
+	</select>
+
+	<select id="findAll" resultMap="AdminResult">
+		select * from t_admin t1,t_user t2 where t1.id=t2.id
+	</select>
+
+	<insert id="add" parameterType="admin">
+		insert into t_admin(id)
+		values(#{id})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_admin(
+		id)
+		values
+		<foreach collection="list" item="admin" separator=",">
+			(#{admin.id})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_admin
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="admin" index="i">
+			#{admin.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="admin">
+		update t_admin
+		<set>
+			<if test="id != null and id !=''">
+				id = #{id},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper> 

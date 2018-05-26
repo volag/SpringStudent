@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.CourseMapper">
+    <resultMap type="Course" id="CourseResult">
+		<id property="id" column="id"/>
+		<result property="no" column="no"/>
+		<result property="name" column="name"/>
+		<result property="type" column="type"/>
+		<result property="teacherName" column="teacher_name"/>
+	</resultMap>
+
+	<select id="findAllCount" resultType="Long">
+		select count(*) from t_course
+	</select>
+
+	<select id="findById" resultMap="CourseResult">
+		select * from t_course where id = #{id}
+	</select>
+
+	<select id="findAll" resultMap="CourseResult">
+		select * from t_course
+	</select>
+
+	<insert id="add" parameterType="course">
+		insert into t_course(no,name,type,teacher_name)
+		values(#{no},#{name},#{type},#{teacherName})
+	</insert>
+
+	<insert id="addAll">
+		insert into t_course(
+		no,name,type,teacher_name)
+		values
+		<foreach collection="list" item="course" separator=",">
+			(#{course.no},#{course.name},#{course.type},#{course.teacherName})
+		</foreach>
+	</insert>
+
+	<delete id="delete">
+		delete from t_course
+		where id in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="course" index="i">
+			#{course.id}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="Course">
+		update t_course
+		<set>
+			<if test="no != null and no !=''">
+				no = #{no},
+			</if>
+			<if test="name != null and name !=''">
+				name = #{name},
+			</if>
+			<if test="type != null and type !=''">
+				type = #{type},
+			</if>
+	        <if test="teacherName != null and teacherName !=''">
+				teacher_name = #{teacherName},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper> 
