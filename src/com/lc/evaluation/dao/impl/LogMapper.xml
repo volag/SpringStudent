@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.evaluation.dao.LogMapper">
+	<resultMap type="Log" id="LogResult">
+		<id property="id" column="id" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="action" column="action" />
+		<result property="userName" column="user_name" />
+		<result property="realName" column="real_name" />
+		<result property="userType" column="user_type" />
+	</resultMap>
+
+	<select id="findAll" resultMap="LogResult">
+		select * from t_log
+	</select>
+	
+	
+</mapper> 
