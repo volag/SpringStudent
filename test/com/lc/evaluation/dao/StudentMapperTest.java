@@ -38,7 +38,7 @@ public class StudentMapperTest {
 	@Test
 	public void testFindByUserName() {
 		System.out.println(stu);
-		Student student = stu.findByUserName("15201124");
+		Student student = stu.findByUserName("15201115");
 			System.out.println(student);
 	}
 
@@ -67,14 +67,9 @@ public class StudentMapperTest {
 
 	@Test
 	public void testDelete() {
-		Student student = new Student();
-		student.setId(72);
-		Student student1 = new Student();
-		student1.setId(73);
-		Collection<Student> studentList = new ArrayList<>();
-		studentList.add(student);
-		studentList.add(student1);
-		stu.delete(studentList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		stu.delete(list);
 	}
 
 	@Test

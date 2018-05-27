@@ -48,11 +48,9 @@ public class CoreMapperTest {
 
 	@Test
 	public void testDelete() {
-		Core core = new Core();
-		core.setId(1);
-		Collection<Core> coreList = new ArrayList<>();
-		coreList.add(core);
-		co.delete(coreList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		co.delete(list);
 	}
 
 	@Test

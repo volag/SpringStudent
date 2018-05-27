@@ -14,14 +14,26 @@ public class StudentCourseRespDto implements BasicResponseMapDto{
 	
 	String courseType;
 	
+	String teacherName;
+	
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
 	public StudentCourseRespDto() {
 	}
 	
-	public StudentCourseRespDto(Integer coreId, String courseName, String courseType) {
+	public StudentCourseRespDto(Integer coreId, String courseName, 
+			String courseType, String teacherName) {
 		super();
 		this.coreId = coreId;
 		this.courseName = courseName;
 		this.courseType = courseType;
+		this.teacherName = teacherName;
 	}
 
 

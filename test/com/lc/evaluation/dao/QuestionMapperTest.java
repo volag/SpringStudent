@@ -48,11 +48,9 @@ public class QuestionMapperTest {
 
 	@Test
 	public void testDelete() {
-		Question question = new Question();
-		question.setId(11);
-		Collection<Question> questionList = new ArrayList<>();
-		questionList.add(question);
-		qu.delete(questionList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		qu.delete(list);
 	}
 
 	@Test

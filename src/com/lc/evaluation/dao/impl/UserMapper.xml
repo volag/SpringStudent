@@ -16,6 +16,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="sex" column="sex" />
 	</resultMap>
 	
+	 <!--<select id="findByMap"  parameterType="user" resultMap="UserResult">
+		select * from t_user
+		  <where> 
+		   <if test="userName != null and userName !=''">
+				and user_name = #{userName}
+			</if>
+			<if test="password != null and password !=''">
+				and password = #{password}
+			</if>
+			<if test="avatarPath != null and avatarPath !=''">
+				and avatar_path = #{avatarPath}
+			</if>
+			<if test="userType != null and userType !=''">
+				and user_type = #{userType}
+			</if>
+			<if test="birthday != null">
+				and birthday = #{birthday}
+			</if>
+			<if test="address != null and address !=''">
+				and address = #{address}
+			</if>
+			<if test="phoneNum != null and phoneNum !=''">
+				and phone_num = #{phoneNum}
+			</if>
+			<if test="realName != null and realName !=''">
+				and real_name = #{realName}
+			</if>
+			<if test="sex != null and sex !=''">
+				and sex = #{sex}
+			</if> 
+		 	</where>  
+	</select>-->
+	
 	<select id="findByUserName" resultMap="UserResult">
 		select * from t_user where
 		user_name=#{userName}
@@ -42,7 +75,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_user
 	</select>
 
-	<insert id="add" parameterType="User">
+	<insert id="add" parameterType="User" useGeneratedKeys="true"
+    keyProperty="id" >
 		insert into t_user(
 		user_name,password,avatar_path,
 		user_type,birthday,address,phone_num,real_name,sex)
@@ -67,8 +101,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_user
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="ent" index="i">
-			#{ent.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 
@@ -105,5 +139,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where id = #{id}
 	</update>
-
+    <select id="findByMap"  parameterType="Map" resultMap="UserResult">
+		select * from t_user
+		where
+		<foreach collection="content.keys" separator="and" item="value" index="key">    
+           #{key} = #{value}      
+        </foreach>
+	</select>
 </mapper> 

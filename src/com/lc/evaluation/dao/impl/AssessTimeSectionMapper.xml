@@ -3,18 +3,33 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.evaluation.dao.AssessTimeSectionMapper">
-    <resultMap type="AssessTimeSection" id="AssessTimeSectionResult">
-		<id property="id" column="id"/>
-		<result property="startTime" column="start_time"/>
-		<result property="endTime" column="end_time"/>
+	<resultMap type="AssessTimeSection" id="AssessTimeSectionResult">
+		<id property="id" column="id" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
 	</resultMap>
 
+	<select id="findByMap" parameterType="assessTimeSection"
+		resultMap="AssessTimeSectionResult">
+		select * from t_assess_time
+		<where>
+			<if test="startTime != null and startTime !=''">
+				and start_time = #{startTime}
+			</if>
+			<if test="endTime != null and endTime !=''">
+				and end_time = #{endTime}
+			</if>
+		</where>
+	</select>
+
 	<select id="findAllCount" resultType="Long">
-		select count(*) from t_assess_time
+		select count(*) from
+		t_assess_time
 	</select>
 
 	<select id="findById" resultMap="AssessTimeSectionResult">
-		select * from t_assess_time where id = #{id}
+		select * from t_assess_time
+		where id = #{id}
 	</select>
 
 	<select id="findAll" resultMap="AssessTimeSectionResult">
@@ -22,7 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="add" parameterType="assessTimeSection">
-		insert into t_assess_time(start_time,end_time)
+		insert into
+		t_assess_time(start_time,end_time)
 		values(#{startTime},#{endTime})
 	</insert>
 
@@ -39,8 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_assess_time
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="assessTimeSection" index="i">
-			#{assessTimeSection.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 

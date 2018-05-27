@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.lc.evaluation.entity.Log;
+import com.lc.evaluation.util.WorkDate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:mybatis-config.xml")
@@ -51,11 +52,9 @@ public class LogMapperTest {
 
 	@Test
 	public void testDelete() {
-		List<Log> logList = new ArrayList<>();
-		Log log = new Log();
-		log.setId(2);
-		logList.add(log);
-		lo.delete(logList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		lo.delete(list);
 	}
 
 	@Test
@@ -103,6 +102,13 @@ public class LogMapperTest {
 	@Test
 	public void testFindByPage() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void findByTimeSection() {
+		Date date = WorkDate.getBeginOfMonthDate(2018,5);
+		Date date1 = new Date();
+		System.out.println(lo.findByTimeSection(date, date1).get(0));
 	}
 
 }

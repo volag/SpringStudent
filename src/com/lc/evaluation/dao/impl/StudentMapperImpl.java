@@ -87,7 +87,7 @@ public class StudentMapperImpl implements StudentMapper{
 	}*/
 
 	@Override
-	public List<Student> findByMap(Map maps) {
+	public List<Student> findByMap(Student maps) {
 		// TODO Auto-generated method stub
 		return null;
 	}

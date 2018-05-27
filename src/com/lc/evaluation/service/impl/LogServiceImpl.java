@@ -24,20 +24,7 @@ public class LogServiceImpl extends AbstractService<Log>
 		super(basicMapper);
 	}
 
-	@Override
-	public BasicResponseDto<Log> query(Serializable id) {
-		return null;
-	}
-
-	@Override
-	public List<BasicResponseDto<Log>> queryAll() {
-		return null;
-	}
-
-	@Override
-	public List<BasicResponseDto<Log>> queryPage(int page) {
-		return null;
-	}
+	
 
 	@Override
 	public List<Log> queryTodayLogs() {

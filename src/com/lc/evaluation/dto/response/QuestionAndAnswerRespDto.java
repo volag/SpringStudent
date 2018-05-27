@@ -6,12 +6,43 @@ import com.lc.evaluation.dto.basic.BasicResponseMapDto;
 
 public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 	
+	String teacherName;
+	
+	String courseName;
+	
 	Integer answerId;
 	
+	Integer assessId;
+	
+	public Integer getAssessId() {
+		return assessId;
+	}
+
+	public void setAssessId(Integer assessId) {
+		this.assessId = assessId;
+	}
+
 	String questionContext;
 	
 	String answer;
 	
+	public QuestionAndAnswerRespDto() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public QuestionAndAnswerRespDto(String teacherName, String courseName, Integer answerId, String questionContext,
+			String answer, Integer assessId) {
+		super();
+		this.teacherName = teacherName;
+		this.courseName = courseName;
+		this.answerId = answerId;
+		this.questionContext = questionContext;
+		this.answer = answer;
+		this.assessId = assessId;
+	}
+
+
+
 	@Override
 	public QuestionAndAnswerRespDto init(Map mapData) {
 		
@@ -51,5 +82,23 @@ public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 		return "QuestionAndAnswerRespDto [answerId=" + answerId + ", questionContext=" + questionContext + ", answer="
 				+ answer + "]";
 	}
+
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+	
+	
 
 }

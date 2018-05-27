@@ -48,11 +48,9 @@ public class CourseMapperTest {
 
 	@Test
 	public void testDelete() {
-		Course course = new Course();
-		course.setId(8);
-		Collection<Course> courseList = new ArrayList<>();
-		courseList.add(course);
-		co.delete(courseList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		co.delete(list);
 	}
 
 	@Test

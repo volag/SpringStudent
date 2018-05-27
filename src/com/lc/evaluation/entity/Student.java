@@ -9,9 +9,16 @@ public class Student extends User{
 	private Date enterTime;
 	private String gradeId;
 	
+	private Integer isAssess;
 //	private List<Course> courses;
 //	private List<Teacher> teachers;
 	
+	public Integer getIsAssess() {
+		return isAssess;
+	}
+	public void setIsAssess(Integer isAssess) {
+		this.isAssess = isAssess;
+	}
 	public Integer getId() {
 		return id;
 	}

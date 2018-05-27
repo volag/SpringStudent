@@ -16,13 +16,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="sex" column="sex"/>
 		<result property="enterTime" column="enter_school_date"/>
 		<result property="gradeId" column="grade_id"/>
+		<result property="isAssess" column="is_assess"/>
 	</resultMap>
-<!-- 	
-	<resultMap type="Student" id="StudentMap">
-		<result property="id" column="id"/>
-		<result property="enterTime" column="enter_school_date"/>
-		<result property="gradeId" column="grade_id"/>
-	</resultMap> -->
+	
+    <select id="findByMap"  parameterType="student" resultMap="StudentResult">
+		select * from t_student t1,t_user t2 
+		 <where> 
+		   <if test="userName != null and userName !=''">
+				and t2.user_name = #{userName}
+			</if>
+			<if test="password != null and password !=''">
+				and t2.password = #{password}
+			</if>
+			<if test="avatarPath != null and avatarPath !=''">
+				and t2.avatar_path = #{avatarPath}
+			</if>
+			<if test="userType != null and userType !=''">
+				and t2.user_type = #{userType}
+			</if>
+			<if test="birthday != null and birthday !=''">
+				and t2.birthday = #{birthday}
+			</if>
+			<if test="address != null and address !=''">
+				and t2.address = #{address}
+			</if>
+			<if test="phoneNum != null and phoneNum !=''">
+				and t2.phone_num = #{phoneNum}
+			</if>
+			<if test="realName != null and realName !=''">
+				and t2.real_name = #{realName}
+			</if>
+			<if test="sex != null and sex !=''">
+				and t2.sex = #{sex}
+			</if> 
+			<if test="isAssess != null and isAssess !=''">
+				and t1.is_assess = #{isAssess}
+			</if> 
+			<if test="gradeId != null and gradeId !=''">
+				and t1.grade_id = #{gradeId}
+			</if>
+			
+			<if test="enterTime != null and enterTime !=''">
+				and t1.enter_school_date &gt; #{enterTime}
+			</if>
+			
+			and t1.id=t2.id 
+		 	</where> 
+	</select>
 
 	<select id="findByUserName"  resultMap="StudentResult">
 		select * from t_student t1,t_user t2 where t1.id=t2.id and t2.user_name=#{userName}
@@ -61,11 +101,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<delete id="delete">
-		delete from t_student
+		delete from t_user
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="student" index="i">
-			#{student.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 

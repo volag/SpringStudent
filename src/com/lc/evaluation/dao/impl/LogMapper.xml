@@ -3,28 +3,41 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.evaluation.dao.LogMapper">
-    <resultMap type="Log" id="LogResult">
-		<id property="id" column="id"/>
+	<resultMap type="Log" id="LogResult">
+		<id property="id" column="id" />
 		<result property="startTime" column="start_time" />
 		<result property="endTime" column="end_time" />
-		<result property="action" column="action"/>
+		<result property="action" column="action" />
 		<result property="userName" column="user_name" />
-		<result property="realName" column="real_name"/>
-		<result property="userType" column="user_type"/>
+		<result property="realName" column="real_name" />
+		<result property="userType" column="user_type" />
 	</resultMap>
 
-	<select id="findAll"  resultMap="LogResult">
-		select * from t_log
+	<select id="findAll" resultMap="LogResult">
+		select * from t_log 
+		ORDER BY start_time DESC
 	</select>
-	
-	<select id="findAllCount"  resultType="Long">
-		select * from t_log
+
+	<select id="findAllCount" resultType="Long">
+		select * from t_log 
 	</select>
-	
-	<select id="findById"  resultMap="LogResult">
+
+	<select id="findById" resultMap="LogResult">
 		select * from t_log where id = #{id}
 	</select>
-	
+
+	 <select id="findByTimeSection" resultMap="LogResult">
+	   select * from t_log 
+	   <where>
+		 <if test="#{0} !=null and #{0}  !=''">
+			and start_time&gt;=#{0}
+		</if> 
+	 	<if test=" #{1}  !=null and #{1} !=''">
+			and end_time&lt;=#{1}
+		</if> 
+		</where>
+	</select>
+
 	<insert id="add" parameterType="Log">
 		insert into t_log(
 		start_time,end_time,action,
@@ -34,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{userName},#{realName},#{userType})
 	</insert>
 
+
 	<insert id="addAll">
 		insert into t_log(
 		start_time,end_time,action,
@@ -42,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<foreach collection="list" item="log" separator=",">
 			(
 			#{log.startTime},#{log.endTime},#{log.action},
-		    #{log.userName},#{log.realName},#{log.userType})
+			#{log.userName},#{log.realName},#{log.userType})
 		</foreach>
 	</insert>
 
@@ -50,8 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_log
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="log" index="i">
-			#{log.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 
@@ -79,5 +93,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where id = #{id}
 	</update>
-	
+
 </mapper> 

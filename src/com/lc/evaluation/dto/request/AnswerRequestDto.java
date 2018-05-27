@@ -10,6 +10,7 @@ public class AnswerRequestDto implements BasicRequestDto<Answer>{
 	
 	private Integer id;
 	private Integer assessId;
+	
 	private Integer questionId;
 	private String answer;
 
@@ -65,6 +66,12 @@ public class AnswerRequestDto implements BasicRequestDto<Answer>{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "AnswerRequestDto [id=" + id + ", assessId=" + assessId + ", questionId=" + questionId + ", answer="
+				+ answer + "]";
 	}
 
 	

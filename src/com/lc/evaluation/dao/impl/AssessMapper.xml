@@ -3,37 +3,51 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.evaluation.dao.AssessMapper">
-    <resultMap type="Assess" id="AssessResult">
-		<id property="id" column="id"/>
+	<resultMap type="Assess" id="AssessResult">
+		<id property="id" column="id" />
 		<result property="score" column="score" />
 		<result property="advice" column="advice" />
 	</resultMap>
 
-	<select id="findAll"  resultMap="AssessResult">
-		select * from t_assess ta 
-		 	join t_core tc on ta.id = tc.id
-		 	join t_course t1 on t1.id = tc.t_course_id
-		 	join t_student t2 on t2.id = tc.t_student_id
-		 	join t_teacher t3 on t3.id = tc.t_teacher_id
+	<select id="findByMap" parameterType="assess" resultMap="AssessResult">
+		select * from t_assess
+		<where>
+			<if test="score != null and score !=''">
+				and score = #{score}
+			</if>
+			<if test="advice != null and advice !=''">
+				and advice = #{advice}
+			</if>
+		</where>
 	</select>
-	
+
+	<select id="findAll" resultMap="AssessResult">
+		select * from t_assess ta
+		join t_core tc on ta.id = tc.id
+		join t_course t1 on t1.id = tc.t_course_id
+		join t_student t2 on t2.id = tc.t_student_id
+		join t_teacher t3 on t3.id = tc.t_teacher_id
+	</select>
+
 	<select id="findAllCount" resultType="Long">
-		select count(*) from t_assess
+		select count(*) from
+		t_assess
 	</select>
-	
+
 	<select id="findById" resultMap="AssessResult">
-		select * from t_assess where id = #{id}
+		select * from t_assess where id
+		= #{id}
 	</select>
-	
+
 	<delete id="delete">
 		delete from t_assess
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="assess" index="i">
-			#{assess.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
-	
+
 	<update id="update" parameterType="assess">
 		update t_assess
 		<set>
@@ -49,9 +63,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where id = #{id}
 	</update>
-	
+
 	<insert id="add" parameterType="assess">
-		insert into t_assess(id,score,advice)
+		insert into
+		t_assess(id,score,advice)
 		values(#{id},#{score},#{advice})
 	</insert>
 
@@ -63,5 +78,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{assess.id},#{assess.score},#{assess.advice})
 		</foreach>
 	</insert>
-	
+
 </mapper> 

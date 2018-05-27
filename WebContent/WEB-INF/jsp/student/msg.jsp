@@ -33,7 +33,6 @@
 
 			<!--/span-->
 			<div class="span9" id="content">
-
 				<div class="row-fluid">
 					<!-- block -->
 					<div class="block">

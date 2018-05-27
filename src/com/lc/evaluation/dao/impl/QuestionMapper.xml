@@ -8,6 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="context" column="context"/>
 	</resultMap>
 
+     <select id="findByMap" parameterType="question" resultMap="QuestionResult">
+		select * from t_question
+		<where>
+			<if test="context != null and context !=''">
+				and context = concat('%',#{context},'%')
+			</if>
+		</where>
+	</select>
+	
 	<select id="findAllCount" resultType="Long">
 		select count(*) from t_question
 	</select>
@@ -38,8 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_question
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="question" index="i">
-			#{question.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 

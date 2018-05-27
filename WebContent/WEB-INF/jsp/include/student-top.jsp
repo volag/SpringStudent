@@ -17,14 +17,14 @@
 							<ul class="dropdown-menu">
 								<li><a tabindex="-1" href="#">Profile</a></li>
 								<li class="divider"></li>
-								<li><a tabindex="-1" href="loginOut">注销</a></li>
+								<li><a tabindex="-1" href="logout">注销</a></li>
 							</ul></li>
 					</ul>
 					<ul class="nav">
 						<li class="active"><a href="#">Dashboard</a></li>
-						<li><a href="student/personMessage" >个人信息</b>
+						<li><a href="student/service/msg" >个人信息</b>
 						</a></li>
-							<li><a href="student/changePassword" >修改密码</b>
+							<li><a href="student/service/changePassword" >修改密码</b>
 						</a></li>
 						<li><a href="#" >其他</b>
 						</a></li>

@@ -12,7 +12,7 @@ import com.lc.evaluation.dto.basic.BasicRequestUserDto;
 import com.lc.evaluation.entity.Core;
 import com.lc.evaluation.entity.basic.EntityUser;
 
-@Component
+//@Component
 public abstract class AbstractUserService<T extends EntityUser>
 	extends AbstractService<T> implements BasicUserService<T>{
 	
@@ -24,6 +24,7 @@ public abstract class AbstractUserService<T extends EntityUser>
 //		super.basicMapper = (BasicMapper<T>) userMapper;
 	}
 	
+	@Override
 	final public boolean isExist(String userName){
 		
 		if(userMapper.findByUserName(userName) == null)
@@ -32,6 +33,7 @@ public abstract class AbstractUserService<T extends EntityUser>
 		
 	}
 	
+	@Override
 	final public boolean modifyPassword(String userName, String oldPassword, String newPassword){
 		T entity = userMapper.findByUserName(userName);
 		if(entity.getPassword().equals(oldPassword)){
@@ -43,13 +45,21 @@ public abstract class AbstractUserService<T extends EntityUser>
 	}
 	
 	
+	
+	@Override
 	final public boolean logIn(BasicRequestUserDto<T> user){
 		
 		T u = userMapper.findByUserName(user.getUserName());
+		System.out.println("user :" + u);
 		if(u != null && u.getPassword().equals(user.getPassword())){
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	final public T findByUserName(String userName){
+		return userMapper.findByUserName(userName);
 	}
 
 }

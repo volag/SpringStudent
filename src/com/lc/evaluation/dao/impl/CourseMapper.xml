@@ -11,6 +11,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="teacherName" column="teacher_name"/>
 	</resultMap>
 
+   <select id="findByMap" parameterType="course" resultMap="CourseResult">
+	select * from t_course
+	<where>
+		<if test="no != null and no !=''">
+			and no = #{no}
+		</if>
+		<if test="name != null and name !=''">
+			and name = #{name}
+		</if>
+		<if test="type != null and type !=''">
+			and type = #{type}
+		</if>
+		<if test="teacherName != null and teacherName !=''">
+			and teacher_name = #{teacherName}
+		</if>
+	</where>
+</select>
+	
 	<select id="findAllCount" resultType="Long">
 		select count(*) from t_course
 	</select>
@@ -41,8 +59,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_course
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="course" index="i">
-			#{course.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 

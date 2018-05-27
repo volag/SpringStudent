@@ -26,39 +26,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from t_answer_question 
 		where id in
 		<foreach collection="list" open="(" close=")" separator=","
-			item="answer" index="i">
-			#{answer.id}
+			item="id" index="i">
+			#{id}
 		</foreach>
 	</delete>
 	
 	<update id="update" parameterType="answer">
 		update t_answer_question 
 		<set>
-			<if test="id != null and id !=''">
-				id = #{id},
+			<if test="assessId != null and assessId !=''">
+				t_assess_id = #{assessId},
 			</if>
-			<if test="score != null and score !=''">
-				score = #{score},
+			<if test="questionId != null and questionId !=''">
+				t_question_id = #{questionId},
 			</if>
-			<if test="advice != null and advice !=''">
-				advice = #{advice},
+			<if test="answer != null and answer !=''">
+				answer = #{answer},
 			</if>
 		</set>
 		where id = #{id}
 	</update>
 	
 	<insert id="add" parameterType="answer">
-		insert into t_answer_question (id,score,advice)
-		values(#{id},#{score},#{advice})
+		insert into t_answer_question (t_assess_id,t_question_id,answer)
+		values(#{assessId},#{questionId},#{answer})
 	</insert>
 
 	<insert id="addAll">
 		insert into t_answer_question (
-		id,score,advice)
+		t_assess_id,t_question_id,answer)
 		values
 		<foreach collection="list" item="answer" separator=",">
-			(#{answer.id},#{answer.score},#{answer.advice})
+			(#{answer.assessId},#{answer.questionId},#{answer.answer})
 		</foreach>
 	</insert>
+	
+	<select id="findByMap"  parameterType="answer" resultMap="AnswerResult">
+		select * from t_answer_question
+		 <where> 
+		   <if test="assessId != null and assessId !=''">
+				and t_assess_id = #{assessId}
+			</if>
+			<if test="questionId != null and questionId !=''">
+				and t_question_id = #{questionId}
+			</if>
+			<if test="answer != null and answer !=''">
+				and answer = #{answer}
+			</if>
+		 	</where> 
+	</select>
+	
+  
 	
 </mapper> 

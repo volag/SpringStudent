@@ -80,8 +80,8 @@ public class AdminMapperImpl implements AdminMapper{
 	}
 
 	@Override
-	public List<Admin> findByMap(Map map) {
-		return adminMapper.findByMap(map);
+	public List<Admin> findByMap(Admin entity) {
+		return adminMapper.findByMap(entity);
 	}
 
 }

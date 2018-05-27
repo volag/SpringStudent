@@ -61,14 +61,9 @@ public class TeacherMapperTest {
 
 	@Test
 	public void testDelete() {
-		Teacher teacher = new Teacher();
-		teacher.setId(75);
-		Teacher teacher1 = new Teacher();
-		teacher1.setId(79);
-		Collection<Teacher> teacherList = new ArrayList<>();
-		teacherList.add(teacher);
-		teacherList.add(teacher1);
-		te.delete(teacherList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		te.delete(list);
 	}
 //
 //	@Test

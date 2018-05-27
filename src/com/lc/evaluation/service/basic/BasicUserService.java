@@ -14,5 +14,9 @@ public interface BasicUserService<T  extends EntityUser> extends BasicService<T>
 	 * @return true or false.
 	 */
 	boolean logIn(BasicRequestUserDto<T> user);
+	
+	T findByUserName(String userName);
+
+	boolean modifyPassword(String userName, String oldPassword, String newPassword);
 
 }

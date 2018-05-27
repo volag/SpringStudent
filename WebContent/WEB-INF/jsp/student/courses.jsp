@@ -7,16 +7,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<base href="<%=sysPath+"/" %>">
+<base href="<%=sysPath + "/"%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>学生评教</title>
-<link href="css/bootstrap.min.css?v=1" rel="stylesheet"
+<link href="css/bootstrap.min.css?v=1" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css?v=1" rel="stylesheet"
 	media="screen">
-<link href="css/bootstrap-responsive.min.css?v=1"
-	rel="stylesheet" media="screen">
 <link href="css/styles.css?v=1" rel="stylesheet" media="screen">
-<link href="css/DT_bootstrap.css?v=1" rel="stylesheet"
-	media="screen">
+<link href="css/DT_bootstrap.css?v=1" rel="stylesheet" media="screen">
 <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 <body>
@@ -50,34 +48,24 @@
 									class="table table-striped table-bordered" id="example">
 									<thead>
 										<tr>
-											<th>编号</th>
+											<th>序号</th>
 											<th>课程名</th>
-											<th>授课老师</th>
+											<th class="sorting">授课老师</th>
 											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody>
+			                           <c:forEach items="${courses}" var="data" varStatus="status">
 										<tr>
-											<td>1</td>
-											<td>高等数学</td>
-											<td>张三</td>
-											<td><a href="studentAssess" data-toggle="modal"
-												class="btn btn-primary">评教</a></td>
+											<td>${status.index+1}</td>
+											<td>${data.courseName}</td>
+											<td>${data.teacherName}</td>
+											<td><a href="student/service/assess?coreId=${data.coreId}" data-toggle="modal"
+												class="btn btn-primary">评教</a>
+												<a href="student/service/assessInfo?coreId=${data.coreId}" data-toggle="modal"
+												class="btn btn-primary">查看</a></td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>王二</td>
-											<td>Thornton</td>
-											<td><a href="#myAlert" data-toggle="modal"
-												class="btn btn-primary">评教</a></td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>计算机组成原理</td>
-											<td>赵六</td>
-											<td><a href="#myAlert" data-toggle="modal"
-												class="btn btn-primary">评教</a></td>
-										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -86,11 +74,10 @@
 				</div>
 			</div>
 		</div>
-	<hr>
-	<footer>
-	<p>
-		&copy; student assessment system 2018 
-	</footer>
+		<hr>
+		<footer>
+		<p>&copy; student assessment system 2018
+		</footer>
 	</div>
 	<script src="js/jquery-1.9.1.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -101,8 +88,10 @@
 	<script src="js/DT_bootstrap.js"></script>
 	<script>
 		$(function() {
-			  // Easy pie charts
-            $('.chart').easyPieChart({animate: 1000});
+			// Easy pie charts
+			$('.chart').easyPieChart({
+				animate : 1000
+			});
 		});
 	</script>
 </body>

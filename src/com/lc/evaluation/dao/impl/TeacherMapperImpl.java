@@ -2,7 +2,6 @@ package com.lc.evaluation.dao.impl;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -80,7 +79,7 @@ public class TeacherMapperImpl implements TeacherMapper{
 	}
 
 	@Override
-	public List<Teacher> findByMap(Map maps) {
+	public List<Teacher> findByMap(Teacher maps) {
 		// TODO Auto-generated method stub
 		return null;
 	}

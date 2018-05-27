@@ -21,7 +21,7 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="welcome">注销</a>
+                                        <a tabindex="-1" href="logout">注销</a>
                                     </li>
                                 </ul>
                             </li>

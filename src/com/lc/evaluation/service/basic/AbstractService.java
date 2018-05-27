@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.lc.evaluation.dao.basic.BasicMapper;
-import com.lc.evaluation.dto.basic.BasicRequestDto;
 import com.lc.evaluation.entity.basic.EntityMine;
+import com.lc.evaluation.util.PageUtil;
 
 public abstract class AbstractService<T extends EntityMine>
 implements BasicService<T> {
@@ -19,13 +19,13 @@ implements BasicService<T> {
 	}
 
 	@Override
-	final public <DTO extends BasicRequestDto<T>> void add(DTO dto) {
-		basicMapper.add(dto.create());
+	final public void add(T entity) {
+		basicMapper.add(entity);
 	}
 
 	@Override
-	final public <DTO extends BasicRequestDto<T>> void update(DTO dto) {
-		T entity = dto.create();
+	final public void update(T entity) {
+//		T entity = dto.create();
 		basicMapper.update(entity);
 	}
 	
@@ -36,6 +36,22 @@ implements BasicService<T> {
 	
 	final protected Map genereateTempMap(){
 		return new HashMap();
+	}
+	
+	
+	@Override
+	final public T query(Integer id) {
+		return basicMapper.findById(id);
+	}
+
+	@Override
+	final public List<T> queryAll() {
+		return basicMapper.findAll();
+	}
+
+	@Override
+	final public PageUtil<T> queryPage(Integer page) {
+		return basicMapper.findByPage(page);
 	}
 
 }

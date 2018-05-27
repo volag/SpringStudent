@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lc.evaluation.dto.basic.BasicResponseMapDto;
 import com.lc.evaluation.dto.request.AnswerRequestDto;
+import com.lc.evaluation.dto.response.QuestionAndAnswerRespDto;
 
 public interface StudentService {
 	
@@ -14,11 +15,16 @@ public interface StudentService {
 	 */
 	List<? extends BasicResponseMapDto> queryCourses(Integer id);
 
+	
+	List<? extends BasicResponseMapDto> queryCoursesByType(Integer id, String courseType);
 	/**
 	 * 提交评教的答案
 	 * @param answerRequestDdto
 	 */
-	void submitAssessQuestionAndAnswer(AnswerRequestDto answerRequestDdto);
+	void submitAssessQuestionAndAnswer(List<Integer> answerIds, List<String> answers);
 	
+	boolean isAssess(Integer studentId);
+
+	void submitAdviceAndCore(Integer assessId, List<String> answers, String advice);
 	
 }

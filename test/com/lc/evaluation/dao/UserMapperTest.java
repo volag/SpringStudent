@@ -62,14 +62,9 @@ public class UserMapperTest {
 
 	@Test
 	public void testDelete() {
-		User user = new User();
-		user.setId(77);
-		User user1 = new User();
-		user1.setId(78);
-		Collection<User> userList = new ArrayList<>();
-		userList.add(user);
-		userList.add(user1);
-		um.delete(userList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		um.delete(list);
 	}
 
 	@Test

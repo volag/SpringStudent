@@ -50,11 +50,9 @@ public class AssessTimeSectionMapperTest {
 
 	@Test
 	public void testDelete() {
-		AssessTimeSection AssessTimeSection = new AssessTimeSection();
-		AssessTimeSection.setId(2);
-		Collection<AssessTimeSection> AssessTimeSectionList = new ArrayList<>();
-		AssessTimeSectionList.add(AssessTimeSection);
-		at.delete(AssessTimeSectionList);
+		List<Integer> list = new ArrayList<>();
+		list.add(71);
+		at.delete(list);
 	}
 
 	@Test

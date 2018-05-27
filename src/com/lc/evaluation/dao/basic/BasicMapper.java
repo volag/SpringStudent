@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.lc.evaluation.entity.basic.EntityMine;
 import com.lc.evaluation.util.PageUtil;
 
@@ -16,7 +18,7 @@ public interface BasicMapper<T extends EntityMine> {
 	 */
 	T findById(Integer id);
 	
-	List<T> findByMap(Map map);
+	List<T> findByMap(T entity);
 	/**
 	 * Finding all count from sql
 	 * @return

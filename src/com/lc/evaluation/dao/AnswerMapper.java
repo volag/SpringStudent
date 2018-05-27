@@ -1,7 +1,5 @@
 package com.lc.evaluation.dao;
 
-import java.util.Map;
-
 import com.lc.evaluation.dao.basic.BasicMapper;
 import com.lc.evaluation.entity.Answer;
 
