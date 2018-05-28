@@ -23,7 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:mybatis-config.xml")
 @WebAppConfiguration
-public class OnlineStatusControllerTest {
+public class StudentOnlineStatusControllerTest {
 //	@Autowired
     private MockMvc mockMvc;
 

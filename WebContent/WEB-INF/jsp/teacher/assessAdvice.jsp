@@ -46,19 +46,23 @@
 									<thead>
 										<tr>
 											<th>编号</th>
-											<th>姓名</th>
-											<th>班级</th>
-											<th>操作</th>
+											<th>意见人</th>
+											<th>学号</th>
+											<th>意见信息</th>
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${assessAdvice}" var="data" varStatus="status">
+									
 										<tr>
-											<td>1</td>
-											<td>张三</td>
-											<td>152011</td>
-											<td><a href="studentAssess" data-toggle="modal"
-												class="btn btn-primary">查看</a></td>
+											<td>${status.index + 1 }</td>
+											<td>${data.studentRealName }</td>
+											<td>${data.studentUserName }</td>
+											<td><textarea class="input-xlarge disabled"
+													id="disabledInput" type="text" readOnly
+													disabled="">${data.advice }</textarea></td>
 										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

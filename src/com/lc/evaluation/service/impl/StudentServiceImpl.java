@@ -127,28 +127,10 @@ System.out.println(assess);
 
 	@Override
 	public List<QuestionAndAnswerRespDto> queryQuestionAndAnswer(Integer assessId) {
-
-		/*// Map map = new HashMap();
-		// map.put(AnswerMapper.assessId, assessId);
-		Answer ans = new Answer();
-		ans.setAssessId(assessId);
-		List<Answer> listAnswers = answerMapper.findByMap(ans);
-
-		List<QuestionAndAnswerRespDto> listDto = new ArrayList<>();
-		for (Answer answer : listAnswers) {
-			Question ques = questionMapper.findById(answer.getQuestionId());
-
-			QuestionAndAnswerRespDto dto = new QuestionAndAnswerRespDto();
-			dto.setAnswer(answer.getAnswer());
-			dto.setAnswerId(answer.getId());
-			dto.setQuestionContext(ques.getContext());
-
-			listDto.add(dto);
-		}
-*/
 		return adminServiceImpl.queryQuestionAndAnswer(assessId);
 	}
-
+	
+	
 	@Override
 	public boolean isAssess(Integer studentId) {
 		Student stu = studentMapper.findById(studentId);
@@ -156,6 +138,11 @@ System.out.println(assess);
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public String queryAssessAdvice(Integer assessId) {
+		return adminServiceImpl.queryAssessAdvice(assessId);
 	}
 
 }

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.lc.evaluation.dao.AnswerMapper;
+import com.lc.evaluation.dao.AssessMapper;
 import com.lc.evaluation.dao.CoreMapper;
 import com.lc.evaluation.dao.CourseMapper;
 import com.lc.evaluation.dao.QuestionMapper;
@@ -16,7 +16,6 @@ import com.lc.evaluation.dao.impl.TeacherMapperImpl;
 import com.lc.evaluation.dto.response.QuestionAndAnswerRespDto;
 import com.lc.evaluation.entity.Admin;
 import com.lc.evaluation.entity.Answer;
-import com.lc.evaluation.entity.Core;
 import com.lc.evaluation.entity.Question;
 import com.lc.evaluation.service.AdminService;
 import com.lc.evaluation.service.basic.AbstractUserService;
@@ -67,12 +66,19 @@ public class AdminServiceImpl
 			dto.setAnswer(answer.getAnswer());
 			dto.setAnswerId(answer.getId());
 			dto.setQuestionContext(ques.getContext());
-//			dto.setAssessId(answer.getAssessId());
 			listDto.add(dto);
 		}
+		
 		return listDto;
 	}
+	
+	@Autowired
+	AssessMapper assessMapper;
 
+	@Override
+	public String queryAssessAdvice(Integer assessId) {
+		return assessMapper.findById(assessId).getAdvice();
+	}
 	
 	
 	

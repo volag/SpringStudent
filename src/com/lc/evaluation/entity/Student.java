@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Student extends User{
 
-	private Integer id;
 	private Date enterTime;
 	private String gradeId;
 	
@@ -18,12 +17,6 @@ public class Student extends User{
 	}
 	public void setIsAssess(Integer isAssess) {
 		this.isAssess = isAssess;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Date getEnterTime() {
@@ -40,7 +33,7 @@ public class Student extends User{
 	}
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", enterTime=" + enterTime + ", gradeId=" + gradeId + "]";
+		return "Student [id=" + super.getId() + ", enterTime=" + enterTime + ", gradeId=" + gradeId + "]";
 	}
 	
 	

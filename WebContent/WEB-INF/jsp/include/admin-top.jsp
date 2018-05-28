@@ -8,16 +8,16 @@
                      <span class="icon-bar"></span>
                      <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">管理员模块</a>
+                    <a class="brand" >管理员模块</a>
                     <div class="nav-collapse collapse">
-                        <ul class="nav pull-right">
+                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" > <i class="icon-user"></i> XXX管理员 <i class="caret"></i>
+                                <a  role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>${userType.realName}管理员<i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a tabindex="-1" href="admin/changePassword">修改密码</a>
+                                        <a tabindex="-1" >修改密码</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -26,56 +26,55 @@
                                 </ul>
                             </li>
                         </ul>
+                       
                         <ul class="nav">
                             <li class="active">
-                                <a href="#">Dashboard</a>
+                                <a >Dashboard</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置<b class="caret"></b>
+                                <a  class="dropdown-toggle" data-toggle="dropdown">设置<b class="caret"></b>
 
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
               
                                     <li>
-                                        <a href="#">管理员设置</a>
+                                        <a href="admin/adminManage">管理员设置</a>
                                     </li>
                                     <li>
-                                        <a href="#">Other Link</a>
+                                        <a href="admin/assessTimeManage">评教时间设置</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="#">Other Link</a>
+                                        <a >Other Link</a>
                                     </li>
                                     <li>
-                                        <a href="#">Other Link</a>
+                                        <a >Other Link</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">内容<i class="caret"></i>
+                                <a  role="button" class="dropdown-toggle" data-toggle="dropdown">内容<i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
+                                 
                                     <li>
-                                        <a tabindex="-1" href="#">日志查询</a>
+                                        <a tabindex="-1" >News</a>
                                     </li>
                                     <li>
-                                        <a tabindex="-1" href="#">News</a>
+                                        <a tabindex="-1" >Custom Pages</a>
                                     </li>
                                     <li>
-                                        <a tabindex="-1" href="#">Custom Pages</a>
-                                    </li>
-                                    <li>
-                                        <a tabindex="-1" href="#">Calendar</a>
+                                        <a tabindex="-1" >Calendar</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="#">帮助</a>
+                                        <a tabindex="-1" >帮助</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">其它</i>
+                                <a  role="button" class="dropdown-toggle" data-toggle="dropdown">其它</i>
                                 </a>
                             </li>
                         </ul>

@@ -6,16 +6,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<base href="<%=sysPath+"/" %>">
+<base href="<%=sysPath + "/"%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>管理员模块</title>
-<link href="css/bootstrap.min.css" rel="stylesheet"
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet"
 	media="screen">
-<link href="css/bootstrap-responsive.min.css"
-	rel="stylesheet" media="screen">
 <link href="css/styles.css" rel="stylesheet" media="screen">
-<link href="css/DT_bootstrap.css" rel="stylesheet"
-	media="screen">
+<link href="css/DT_bootstrap.css" rel="stylesheet" media="screen">
 <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 <body>
@@ -37,53 +35,48 @@
 					<!-- block -->
 					<div class="block">
 						<div class="navbar navbar-inner block-header">
-							<div class="muted pull-left">学生管理</div>
+							<div class="muted pull-left">设置评教时间</div>
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
-								<div class="table-toolbar">
-									<div class="btn-group">
-										<a href="#"><button class="btn btn-success">
-												Add New <i class="icon-plus icon-white"></i>
-											</button></a>
-									</div>
-									<div class="btn-group pull-right">
-										<button data-toggle="dropdown" class="btn dropdown-toggle">
-											Tools <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li><a href="#">Print</a></li>
-											<li><a href="#">Save as PDF</a></li>
-											<li><a href="#">Export to Excel</a></li>
-										</ul>
-									</div>
-								</div>
+								<form class="form-horizontal">
+									<fieldset>
+										<legend>填写信息</legend>
 
-								<table cellpadding="0" cellspacing="0" border="0"
-									class="table table-striped table-bordered" id="example2">
-									<thead>
-										<tr>
-											<th>序号</th>
-											<th>姓名</th>
-											<th>性别</th>
-											<th>班级</th>
-											<th>学号</th>
-											<th>操作</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="odd gradeX">
-											<td>1</td>
-											<td>张三</td>
-											<td>男</td>
-											<td>152011</td>
-											<td class="center">15201124</td>
-											<td class="center"><a href="#myAlert"
-												data-toggle="modal" class="btn btn-danger">detele</a></td>
-										</tr>
+										<div class="control-group">
+											<label class="control-label" for="disabledInput">原始评教时间：</label>
+											<div class="controls">
+												<input class="input-xlarge disabled" id="disabledInput"
+													type="text"
+													placeholder="五月 28, 2018 -五月 30, 2018 "
+													disabled="">
+											</div>
+										</div>
 
-									</tbody>
-								</table>
+										<div class="control-group warning">
+											<label class="control-label" for="inputError">设置开始时间：</label>
+											<div class="controls">
+												<input type="text" id="inputError"> <span
+													class="help-inline">开始时间要在当前时间之后！</span>
+											</div>
+										</div>
+
+										<div class="control-group success">
+											<label class="control-label" for="inputError">设置结束时间：</label>
+											<div class="controls">
+												<input type="text" id="inputError"> <span
+													class="help-inline">结束时间要在开始时间之后！</span>
+											</div>
+										</div>
+
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">Save
+												changes</button>
+											<button type="reset" class="btn">Cancel</button>
+										</div>
+									</fieldset>
+								</form>
+
 							</div>
 						</div>
 					</div>
@@ -118,9 +111,7 @@
 	<script src="js/scripts.js"></script>
 	<script src="js/DT_bootstrap.js"></script>
 	<script>
-		$(function() {
-
-		});
+		$(function() {});
 	</script>
 </body>
 </html>

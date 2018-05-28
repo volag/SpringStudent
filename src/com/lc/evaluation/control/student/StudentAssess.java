@@ -63,7 +63,7 @@ public class StudentAssess {
 		List<QuestionAndAnswerRespDto> listQ = 
 				service.queryQuestionAndAnswer(assessId);
 		model.addAttribute("questions", listQ);
-		log.info("question.size() " + listQ.size());
+		
 		return "student/assess";
 		
 	}
@@ -79,7 +79,6 @@ public class StudentAssess {
 		
 		List<String> answers = new ArrayList<>();
 		for(int i = 0; i < answerIds.size(); i ++){
-//			System.out.println("ans " + request.getParameter("answer"+(i + 1)));
 			answers.add((String)request.getParameter("answer"+(i + 1)) + "");
 		}
 		

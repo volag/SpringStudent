@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.lc.evaluation.dao.TeacherMapper;
 import com.lc.evaluation.dao.UserMapper;
+import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzStudentDto;
+import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzDto;
 import com.lc.evaluation.entity.Teacher;
 import com.lc.evaluation.util.PageUtil;
 
@@ -75,13 +77,29 @@ public class TeacherMapperImpl implements TeacherMapper{
 
 	@Override
 	public PageUtil<Teacher> findByPage(int page) {
-		return null;
+		return teacherMapper.findByPage(page);
 	}
 
 	@Override
-	public List<Teacher> findByMap(Teacher maps) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Teacher> findByMap(Teacher entity) {
+		return teacherMapper.findByMap(entity);
+	}
+
+	@Override
+	public List<TeacherAssessGroupByCourseClazzDto> queryAssessGroupByCourseClazz(Integer teacherId) {
+		return teacherMapper.queryAssessGroupByCourseClazz(teacherId);
+	}
+
+	@Override
+	public List<TeacherAssessGroupByCourseClazzStudentDto> queryAssessGroupByCourseClazzStudent(Integer teacherId,
+			Integer courseId, String clazzId) {
+		return teacherMapper.queryAssessGroupByCourseClazzStudent(teacherId, courseId, clazzId);
+	}
+
+	@Override
+	public List<TeacherAssessGroupByCourseClazzStudentDto> queryAssessGroupByCourseClazzStudentAdvice(
+			Integer teacherId) {
+		return teacherMapper.queryAssessGroupByCourseClazzStudentAdvice(teacherId);
 	}
 
 }

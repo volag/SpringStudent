@@ -13,6 +13,10 @@ public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 	Integer answerId;
 	
 	Integer assessId;
+
+	String questionContext;
+	
+	String answer;
 	
 	public Integer getAssessId() {
 		return assessId;
@@ -21,10 +25,6 @@ public class QuestionAndAnswerRespDto implements BasicResponseMapDto{
 	public void setAssessId(Integer assessId) {
 		this.assessId = assessId;
 	}
-
-	String questionContext;
-	
-	String answer;
 	
 	public QuestionAndAnswerRespDto() {
 		// TODO Auto-generated constructor stub

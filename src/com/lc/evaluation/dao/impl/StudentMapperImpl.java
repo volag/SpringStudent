@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lc.evaluation.dao.StudentMapper;
 import com.lc.evaluation.dao.UserMapper;
+import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzStudentDto;
 import com.lc.evaluation.entity.Student;
 import com.lc.evaluation.entity.User;
 import com.lc.evaluation.util.PageUtil;
@@ -77,7 +78,7 @@ public class StudentMapperImpl implements StudentMapper{
 
 	@Override
 	public PageUtil<Student> findByPage(int page) {
-		return null;
+		return studentMapper.findByPage(page);
 	}
 
 /*	@Override
@@ -87,10 +88,11 @@ public class StudentMapperImpl implements StudentMapper{
 	}*/
 
 	@Override
-	public List<Student> findByMap(Student maps) {
+	public List<Student> findByMap(Student entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return studentMapper.findByMap(entity);
 	}
+
 
 	/*@Override
 	public Map findCourses(Integer id) {

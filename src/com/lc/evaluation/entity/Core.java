@@ -10,6 +10,22 @@ public class Core implements EntityMine{
 	private Integer teacherId;
 	
 	
+	public Core() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public Core(Integer id, Integer studentId, Integer courseId, Integer teacherId) {
+		super();
+		this.id = id;
+		this.studentId = studentId;
+		this.courseId = courseId;
+		this.teacherId = teacherId;
+	}
+
+
+
 	@Override
 	public Integer getId() {
 		return id;

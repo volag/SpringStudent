@@ -14,4 +14,6 @@ public interface CanQueryQuestionAndAnswer {
 	 */
 	List<QuestionAndAnswerRespDto> queryQuestionAndAnswer(Integer assessId);
 
+	
+	String queryAssessAdvice(Integer assessId);
 }

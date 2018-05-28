@@ -19,9 +19,9 @@ import com.lc.evaluation.service.impl.StudentServiceImpl;
 
 @Controller
 @RequestMapping("/student")
-public class Main {
+public class StudentMain {
 	
-	Logger log = LogManager.getLogger(Main.class);
+	Logger log = LogManager.getLogger(StudentMain.class);
 	
 	@Autowired
 	StudentServiceImpl service;

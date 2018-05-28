@@ -65,9 +65,8 @@
 										<tr>
 											<th>序号</th>
 											<th>姓名</th>
-											<th>性别</th>
-											<th>班级</th>
 											<th>学号</th>
+											<th>班级</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -75,11 +74,10 @@
 										<tr class="odd gradeX">
 											<td>1</td>
 											<td>张三</td>
-											<td>男</td>
+											<td>15201124</td>
 											<td>152011</td>
-											<td class="center">15201124</td>
-											<td class="center"><a href="#myAlert"
-												data-toggle="modal" class="btn btn-danger">detele</a></td>
+										    <td ><a href="admin/personMessage" data-toggle="modal"
+												class="btn btn-primary">个人信息</a></td>
 										</tr>
 
 									</tbody>
@@ -97,19 +95,7 @@
 	<p>&copy; student assessment system 2018
 	</footer>
 	</div>
-	<div id="myAlert" class="modal hide">
-		<div class="modal-header">
-			<button data-dismiss="modal" class="close" type="button">&times;</button>
-			<h3 style="color: red">操作警告！</h3>
-		</div>
-		<div class="modal-body">
-			<p>您是否要删除这条信息？</p>
-		</div>
-		<div class="modal-footer">
-			<a data-dismiss="modal" class="btn btn-primary" href="#">确认</a> <a
-				data-dismiss="modal" class="btn" href="#">取消</a>
-		</div>
-	</div>
+
 	<script src="js/jquery-1.9.1.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>

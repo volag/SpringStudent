@@ -3,23 +3,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.evaluation.dao.TeacherMapper">
-    <resultMap type="Teacher" id="TeacherResult">
-		<id property="id" column="id"/>
-		<result property="userName" column="user_name"/>
-		<result property="password" column="password"/>
-		<result property="userType" column="user_type"/>
-		<result property="avatarPath" column="avatar_path"/>
-		<result property="birthday" column="birthday"/>
-		<result property="address" column="address"/>
-		<result property="phoneNum" column="phone_num"/>
-		<result property="realName" column="real_name"/>
-		<result property="sex" column="sex"/>
+	<resultMap type="Teacher" id="TeacherResult">
+		<result property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="userType" column="user_type" />
+		<result property="avatarPath" column="avatar_path" />
+		<result property="birthday" column="birthday" />
+		<result property="address" column="address" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="realName" column="real_name" />
+		<result property="sex" column="sex" />
 	</resultMap>
 
-   <select id="findByMap"  parameterType="teacher" resultMap="TeacherResult">
-		select * from t_teacher t1,t_user t2 
-		 <where> 
-		   <if test="userName != null and userName !=''">
+	<select id="findByMap" parameterType="teacher" resultMap="TeacherResult">
+		select * from t_teacher t1,t_user t2
+		<where>
+			<if test="userName != null and userName !=''">
 				and t2.user_name = #{userName}
 			</if>
 			<if test="password != null and password !=''">
@@ -45,29 +45,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="sex != null and sex !=''">
 				and t2.sex = #{sex}
-			</if> 
-			and t1.id=t2.id 
-		 	</where> 
+			</if>
+			and t1.id=t2.id
+		</where>
 	</select>
 
-	<select id="findByUserName"  resultMap="TeacherResult">
-		select * from t_teacher t1,t_user t2 where t1.id=t2.id and t2.user_name=#{userName}
+	<select id="findByUserName" resultMap="TeacherResult">
+		select * from t_teacher
+		t1,t_user t2 where t1.id=t2.id and t2.user_name=#{userName}
 	</select>
-	
+
 	<select id="findPasswordByUserName" resultType="java.lang.String">
-		select password from t_user where user_name = #{userName}
+		select password
+		from t_user where user_name = #{userName}
 	</select>
-	
+
 	<select id="findAllCount" resultType="Long">
-		select count(*) from t_teacher
+		select count(*) from
+		t_teacher
 	</select>
 
 	<select id="findById" resultMap="TeacherResult">
-		select * from t_teacher t1,t_user t2 where t1.id=t2.id and t1.id=#{id}
+		select * from t_teacher
+		t1,t_user t2 where t1.id=t2.id and t1.id=#{id}
 	</select>
 
 	<select id="findAll" resultMap="TeacherResult">
-		select * from t_teacher t1,t_user t2 where t1.id=t2.id
+		select * from t_teacher t1,t_user
+		t2 where t1.id=t2.id
 	</select>
 
 	<insert id="add" parameterType="teacher">
@@ -102,5 +107,87 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where id = #{id}
 	</update>
+
+	<resultMap
+		type="com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzDto"
+		id="TeacherAssessGroupByCourseClazzDto">
+
+		<result property="clazzId" column="grade_id" />
+		<result property="courseNo" column="no" />
+		<result property="courseId" column="course_id" />
+		<result property="courseName" column="name" />
+		<result property="scoreAverage" column="score_average" />
+
+	</resultMap>
+
+
+	<select id="queryAssessGroupByCourseClazz" resultMap="TeacherAssessGroupByCourseClazzDto">
+
+		select 
+			tcs.no, 
+			tcs.name, 
+			ts.grade_id, 
+			tcs.id course_id, 
+			avg(ta.score)
+				 from t_core tc
+					join t_course tcs 
+						on tcs.id = tc.t_course_id
+					join t_student ts
+						on ts.id = tc.t_student_id
+					join t_assess ta on ta.id = tc.id
+						where 
+							tc.t_teacher_id = #{teacherId}
+							group by tc.t_course_id , ts.grade_id
+
+	</select>
+	
+	<resultMap
+		type="com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzStudentDto"
+		id="TeacherAssessGroupByCourseClazzStudentDto">
+
+		<result property="studentRealName" column="studentRealName" />
+		<result property="studentUserName" column="studentUserName" />
+		<result property="assessCore" column="assessCore" />
+		<result property="coreId" column="core_id" />
+		<result property="advice" column="advice" />
+
+	</resultMap>
+	
+	<select id="queryAssessGroupByCourseClazzStudent" resultMap="TeacherAssessGroupByCourseClazzStudentDto">
+
+		SELECT 
+			t_user.user_name studentUserName,
+			t_user.real_name studentRealName,
+			t_assess.score assessCore ,
+			t_assess.advice advice ,
+			t_core.id core_id
+				FROM t_core
+				JOIN t_student on t_student.id = t_core.t_student_id
+				JOIN t_assess on t_assess.id = t_core.id
+				JOIN t_user on t_user.id = t_core.t_student_id
+				where
+						 t_core.t_teacher_id = #{0}
+						AND t_core.t_course_id = #{1}
+						AND t_student.grade_id = #{2}
+				ORDER BY t_user.user_name ASC
+	</select>
+	
+	
+	<select id="queryAssessGroupByCourseClazzStudentAdvice" resultMap="TeacherAssessGroupByCourseClazzStudentDto">
+
+		SELECT 
+			t_user.user_name studentUserName,
+			t_user.real_name studentRealName,
+			t_assess.score assessCore ,
+			t_assess.advice advice ,
+			t_core.id core_id
+				FROM t_core
+				JOIN t_student on t_student.id = t_core.t_student_id
+				JOIN t_assess on t_assess.id = t_core.id
+				JOIN t_user on t_user.id = t_core.t_student_id
+				where
+						 t_core.t_teacher_id = #{0}
+				ORDER BY t_user.user_name ASC
+	</select>
 
 </mapper> 

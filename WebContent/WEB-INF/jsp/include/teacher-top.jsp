@@ -12,12 +12,12 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>XXX教师<i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>${userType.realName}教师<i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a tabindex="-1" href="#">Profile</a>
+                                        <a tabindex="-1" >Profile</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -36,12 +36,12 @@
                          
                             </li>
                             <li >
-                                <a href="teacher/changePassword" >修改密码</b>
+                                <a href="teacher/service/changePasswordPage" >修改密码</b>
                                 </a>
                        
                             </li>
                             <li >
-                                <a href="#" >其他</b>
+                                <a >其他</b>
                                 </a>
         
                             </li>

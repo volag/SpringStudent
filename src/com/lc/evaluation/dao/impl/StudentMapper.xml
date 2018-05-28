@@ -3,26 +3,28 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lc.evaluation.dao.StudentMapper">
-    <resultMap type="Student" id="StudentResult">
-		<id property="id" column="id"/>
-		<result property="userName" column="user_name"/>
-		<result property="password" column="password"/>
-		<result property="userType" column="user_type"/>
-		<result property="avatarPath" column="avatar_path"/>
-		<result property="birthday" column="birthday"/>
-		<result property="address" column="address"/>
-		<result property="phoneNum" column="phone_num"/>
-		<result property="realName" column="real_name"/>
-		<result property="sex" column="sex"/>
-		<result property="enterTime" column="enter_school_date"/>
-		<result property="gradeId" column="grade_id"/>
-		<result property="isAssess" column="is_assess"/>
+
+
+	<resultMap type="Student" id="StudentResult">
+		<result property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="userType" column="user_type" />
+		<result property="avatarPath" column="avatar_path" />
+		<result property="birthday" column="birthday" />
+		<result property="address" column="address" />
+		<result property="phoneNum" column="phone_num" />
+		<result property="realName" column="real_name" />
+		<result property="sex" column="sex" />
+		<result property="enterTime" column="enter_school_date" />
+		<result property="gradeId" column="grade_id" />
+		<result property="isAssess" column="is_assess" />
 	</resultMap>
-	
-    <select id="findByMap"  parameterType="student" resultMap="StudentResult">
-		select * from t_student t1,t_user t2 
-		 <where> 
-		   <if test="userName != null and userName !=''">
+
+	<select id="findByMap" parameterType="student" resultMap="StudentResult">
+		select * from t_student t1,t_user t2
+		<where>
+			<if test="userName != null and userName !=''">
 				and t2.user_name = #{userName}
 			</if>
 			<if test="password != null and password !=''">
@@ -48,40 +50,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="sex != null and sex !=''">
 				and t2.sex = #{sex}
-			</if> 
+			</if>
 			<if test="isAssess != null and isAssess !=''">
 				and t1.is_assess = #{isAssess}
-			</if> 
+			</if>
 			<if test="gradeId != null and gradeId !=''">
 				and t1.grade_id = #{gradeId}
 			</if>
-			
+
 			<if test="enterTime != null and enterTime !=''">
 				and t1.enter_school_date &gt; #{enterTime}
 			</if>
-			
-			and t1.id=t2.id 
-		 	</where> 
+
+			and t1.id=t2.id
+		</where>
 	</select>
 
-	<select id="findByUserName"  resultMap="StudentResult">
-		select * from t_student t1,t_user t2 where t1.id=t2.id and t2.user_name=#{userName}
+	<select id="findByUserName" resultMap="StudentResult">
+		select * from t_student
+		t1,t_user t2 where t1.id=t2.id and t2.user_name=#{userName}
 	</select>
-	
+
 	<select id="findPasswordByUserName" resultType="java.lang.String">
-		select password from t_user where user_name = #{userName}
+		select password
+		from t_user where user_name = #{userName}
 	</select>
-	
+
 	<select id="findAllCount" resultType="Long">
-		select count(*) from t_student
+		select count(*) from
+		t_student
 	</select>
 
 	<select id="findById" resultMap="StudentResult">
-		select * from t_student t1,t_user t2 where t1.id=t2.id and t1.id=#{id}
+		select * from t_student
+		t1,t_user t2 where t1.id=t2.id and t1.id=#{id}
 	</select>
 
 	<select id="findAll" resultMap="StudentResult">
-		select * from t_student t1,t_user t2 where t1.id=t2.id
+		select * from t_student t1,t_user
+		t2 where t1.id=t2.id
 	</select>
 
 	<insert id="add" parameterType="Student">
@@ -121,9 +128,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="gradeId != null and gradeId !=''">
 				grade_id = #{gradeId},
 			</if>
-		
+
 		</set>
 		where id = #{id}
 	</update>
+
 
 </mapper> 

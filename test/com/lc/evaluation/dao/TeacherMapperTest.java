@@ -1,5 +1,7 @@
 package com.lc.evaluation.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.lc.evaluation.dao.impl.TeacherMapperImpl;
 import com.lc.evaluation.entity.Teacher;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,7 +22,7 @@ import com.lc.evaluation.entity.Teacher;
 public class TeacherMapperTest {
 
 	@Autowired
-	TeacherMapper te;
+	TeacherMapperImpl te;
 	@Before
 	public void setUp() throws Exception {
 		
@@ -32,7 +35,7 @@ public class TeacherMapperTest {
 	@Test
 	public void testFindByUserName() {
 		System.out.println(te);
-		Teacher Teacher = te.findByUserName("15201124");
+		Teacher Teacher = te.findByUserName("1111111");
 			System.out.println(Teacher);
 	}
 
@@ -88,6 +91,15 @@ public class TeacherMapperTest {
 		teacherList.add(teacher);
 		teacherList.add(teacher1);
 		te.addAll(teacherList);
+	}
+	
+	@Test
+	public void testqueryAssessGroupByCourseClazz(){
+		assertEquals("Java网络编程", te.queryAssessGroupByCourseClazz(72).get(0));
+	}
+	@Test
+	public void testqueryAssessGroupByCourseClazzStudent(){
+		assertEquals(3, te.queryAssessGroupByCourseClazzStudent(72, 1, "152011").size());
 	}
 
 //	@Test

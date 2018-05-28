@@ -33,7 +33,7 @@
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">意见信息管理</div>
+                                <div class="muted pull-left">评教结果</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -41,24 +41,23 @@
   									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
 										<thead>
 											<tr>
-												<th>编号</th>
 												<th>教师</th>
-												<th>评教等级</th>
+												<th>工号</th>
+												<th>课程号</th>
+												<th>班级号</th>
 												<th>平均分</th>
-												<th>评教人数</th>
 												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>1</td>
 												<td>刘明</td>
-												<td>A</td>
-												<td>98</td>
+												<td>1111111</td>
+												<td>高等数学</td>
+												<td>152011</td>
 												<td>88</td>
-												<td ><a href="#myAlert" data-toggle="modal"
+											<td ><a href="admin/STG" data-toggle="modal"
 												class="btn btn-primary">查看详情</a></td>
-											
 												</tr>
                                         </tbody>
                                     </table>

@@ -42,6 +42,6 @@ public class OnlineController {
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET})
 	public String logout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "login";
+		return "redirect:/";
 	}
 }

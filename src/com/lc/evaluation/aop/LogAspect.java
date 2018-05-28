@@ -16,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-//@Aspect
-//@Component
-//@Order(4)
+@Aspect
+@Component
+@Order(4)
 public class LogAspect {
 
 	private HttpServletRequest request;
@@ -42,17 +42,17 @@ public class LogAspect {
 	 * @param jp
 	 *            连接点：程序执行过程中的某一行为
 	 */
-	@Pointcut("execution(public * com.lc.evaluation.control..*.*(..))")
+	@Pointcut("execution(public * com.lc.evaluation.control.student.StudentOnlineStatusController.login(..))")
 	private void myMethod() {
 	}// 定义一个切入点
 
 	public LogAspect() {
-
+		
 	}
 
 	@Before("myMethod()")
 	public void doBefore(JoinPoint jp) {
-		
+		System.out.println("---------------------------------------");
 		logStr = "\n=======请求参数开始=======\n";
 		for(String key: request.getParameterMap().keySet()){
 			logStr += key + " = " + request.getParameter(key) + "\n";

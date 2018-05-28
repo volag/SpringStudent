@@ -30,7 +30,7 @@
 							<span class="heading">用户登录</span>
 							<div class="form-group">
 								<input type="text" class="form-control" name="userName"
-									id="inputEmail3" value="15201101" placeholder="用户名"> <i
+									id="inputEmail3" value="15201114" placeholder="用户名"> <i
 									class="fa fa-user"></i>
 							</div>
 							<div class="form-group help">

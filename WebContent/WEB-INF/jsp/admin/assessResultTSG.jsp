@@ -24,52 +24,39 @@
             <jsp:include page="/WEB-INF/jsp/include/admin-left.jsp" />
                 <!--/span-->
                 <div class="span9" id="content">
-                      <div class="row-fluid">
+                     <div class="row-fluid">
                      <div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						<h4>Success</h4>
 						The operation completed successfully
 					</div>
-                        
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">教师管理</div>
+                                <div class="muted pull-left">详细信息</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                   <div class="table-toolbar">
-                                      <div class="btn-group">
-                                         <a href="#"><button class="btn btn-success">Add New <i class="icon-plus icon-white"></i></button></a>
-                                      </div>
-                                      <div class="btn-group pull-right">
-                                         <button data-toggle="dropdown" class="btn dropdown-toggle">Tools <span class="caret"></span></button>
-                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Print</a></li>
-                                            <li><a href="#">Save as PDF</a></li>
-                                            <li><a href="#">Export to Excel</a></li>
-                                         </ul>
-                                      </div>
-                                   </div>
                                     
-                                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example2">
-                                        <thead>
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>姓名</th>
-                                                <th>工号</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="odd gradeX">
-                                                <td>1</td>
-                                                <td>王明</td>
-                                                <td>1111111</td>
-                                                 <td ><a href="admin/personMessage" data-toggle="modal"
-												class="btn btn-primary">个人信息</a></td>
-                                            </tr>
-                                           
+  									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>学生姓名</th>
+												<th>学号</th>
+												<th>评教分数</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+											    <td>1</td>
+												<td>刘明</td>
+												<td>15201101</td>
+												<td>95</td>
+											<td ><a href="admin/msg" data-toggle="modal"
+												class="btn btn-primary">评教详情</a></td>
+												</tr>
                                         </tbody>
                                     </table>
                                 </div>

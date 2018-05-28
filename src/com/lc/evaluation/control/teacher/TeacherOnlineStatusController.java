@@ -1,4 +1,4 @@
-package com.lc.evaluation.control.student;
+package com.lc.evaluation.control.teacher;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -9,29 +9,28 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.lc.evaluation.control.util.MsgType;
 import com.lc.evaluation.control.util.UserType;
 import com.lc.evaluation.dto.request.UserLoginDto;
-import com.lc.evaluation.entity.Student;
+import com.lc.evaluation.entity.Teacher;
 import com.lc.evaluation.service.basic.AbstractUserService;
-import com.lc.evaluation.service.impl.StudentServiceImpl;
+import com.lc.evaluation.service.impl.TeacherServiceImpl;
 
 @Controller
-@RequestMapping("/student")
+@RequestMapping("/teacher")
 @SessionAttributes(value = { UserType.userType })
-public class OnlineStatusController {
+public class TeacherOnlineStatusController {
 
-	Logger log = LogManager.getLogger(OnlineStatusController.class);
+	Logger log = LogManager.getLogger(TeacherOnlineStatusController.class);
 
 	@Autowired
-	StudentServiceImpl service;
-
+	TeacherServiceImpl service;
 	
 	@RequestMapping(value = "/login", method = { RequestMethod.POST })
-	public String login(@ModelAttribute UserLoginDto userDto, String error, Model model) {
-		log.info("student login");
+	public String login(@ModelAttribute UserLoginDto userDto, 
+			String error, Model model) {
+		log.info("teacher login");
 		log.info("userName " + userDto.getUserName());
 		log.info("password " + userDto.getPassword());
 		if(error != null){
@@ -39,9 +38,10 @@ public class OnlineStatusController {
 			return "redirect:login";
 		}
 		if (((AbstractUserService) service).logIn(userDto)) {
-			Student stu = service.findByUserName(userDto.getUserName());
-			model.addAttribute(UserType.userType, stu);
-			return "redirect:student/main";
+			Teacher tea = service.findByUserName(userDto.getUserName());
+			System.out.println("tea : " + tea);
+			model.addAttribute(UserType.userType, tea);
+			return "redirect:teacher/main";
 		}
 		return "forward:login?error='用户名或密码错误'";
 	}
