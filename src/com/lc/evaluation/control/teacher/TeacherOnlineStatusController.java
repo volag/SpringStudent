@@ -1,7 +1,9 @@
 package com.lc.evaluation.control.teacher;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,6 @@ import com.lc.evaluation.dto.request.UserLoginDto;
 import com.lc.evaluation.entity.Teacher;
 import com.lc.evaluation.service.basic.AbstractUserService;
 import com.lc.evaluation.service.impl.TeacherServiceImpl;
-
 @Controller
 @RequestMapping("/teacher")
 @SessionAttributes(value = { UserType.userType })
@@ -29,7 +30,7 @@ public class TeacherOnlineStatusController {
 	
 	@RequestMapping(value = "/login", method = { RequestMethod.POST })
 	public String login(@ModelAttribute UserLoginDto userDto, 
-			String error, Model model) {
+			String error, Model model, HttpServletRequest request) {
 		log.info("teacher login");
 		log.info("userName " + userDto.getUserName());
 		log.info("password " + userDto.getPassword());
@@ -41,9 +42,11 @@ public class TeacherOnlineStatusController {
 			Teacher tea = service.findByUserName(userDto.getUserName());
 			System.out.println("tea : " + tea);
 			model.addAttribute(UserType.userType, tea);
+			request.getSession().setAttribute(UserType.userType, tea);
 			return "redirect:teacher/main";
 		}
-		return "forward:login?error='用户名或密码错误'";
+		model.addAttribute(MsgType.error, "用户名或密码错误!");
+		return "redirect:loginPage";
 	}
 
 }

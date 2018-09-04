@@ -2,6 +2,7 @@ package com.lc.evaluation.service;
 
 import java.util.List;
 
+import com.lc.evaluation.dto.response.QuestionAndAnswerRespDto;
 import com.lc.evaluation.dto.response.TeacherAssessDto;
 import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzDto;
 import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzStudentDto;
@@ -24,5 +25,7 @@ public interface TeacherService {
 
 	List<TeacherAssessGroupByCourseClazzStudentDto> queryAssessGroupByCourseClazzStudent(Integer teacherId,
 			Integer courseId, String clazzId);
+
+	List<QuestionAndAnswerRespDto> queryQuestionAndAnswer(Integer assessId);
 
 }

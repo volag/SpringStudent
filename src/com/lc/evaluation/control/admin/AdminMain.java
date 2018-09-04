@@ -1,7 +1,7 @@
 package com.lc.evaluation.control.admin;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +19,19 @@ import com.lc.evaluation.service.impl.TeacherServiceImpl;
 public class AdminMain {
 	
 	Logger log = LogManager.getLogger(AdminMain.class);
-	
-	@Autowired
-	TeacherServiceImpl service;
-	
+
+	/**
+	 * 管理员登录成功跳转到评教结果
+	 * @param admin
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/main")
 	public String main(
 			@ModelAttribute(UserType.userType) Admin admin, 
 			Model model) {
 		
-		return "redirect:service/assessCourses";
+		return "redirect:service/assessResult";
 		
 	}
 	

@@ -1,7 +1,7 @@
 package com.lc.evaluation.control.student;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.lc.evaluation.control.util.MsgType;
 import com.lc.evaluation.control.util.UserType;
 import com.lc.evaluation.entity.Student;
 import com.lc.evaluation.service.impl.StudentServiceImpl;
-
 @Controller
 @RequestMapping("/student/service")
 @SessionAttributes({UserType.userType})
@@ -38,21 +38,19 @@ public class StudentChangePassword {
 		
 		if(service.modifyPassword(
 				stu.getUserName(), oldPassword, newPassword)){
-			return "redirect:changePasswordPage?msg=SUCCESS";
+			model.addAttribute(MsgType.msg, "修改密码成功！");
+			return "student/changePassword";
 		}
-		
-		return "redirect:changePasswordPage?msg=FAILED";
+		model.addAttribute(MsgType.msg, "修改密码失败");
+		return "student/changePassword";
 		
 	}
 	
 	
 	@RequestMapping("/changePasswordPage")
 	public String changePasswordPage(
-			String msg,
 			Model model) {
-		
-		model.addAttribute("msg", msg);
-		return "student/changePasswordPage";
+		return "student/changePassword";
 		
 	}
 	

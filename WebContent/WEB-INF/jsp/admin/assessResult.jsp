@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%
 	String sysPath = request.getContextPath();
 %>
@@ -8,7 +10,7 @@
 <head>
 <base href="<%=sysPath+"/" %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
         <link href="css/styles.css" rel="stylesheet" media="screen">
@@ -41,24 +43,29 @@
   									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
 										<thead>
 											<tr>
+												<th>序号</th>
 												<th>教师</th>
 												<th>工号</th>
-												<th>课程号</th>
+												<th>课程名</th>
 												<th>班级号</th>
 												<th>平均分</th>
 												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>刘明</td>
-												<td>1111111</td>
-												<td>高等数学</td>
-												<td>152011</td>
-												<td>88</td>
-											<td ><a href="admin/STG" data-toggle="modal"
-												class="btn btn-primary">查看详情</a></td>
-												</tr>
+										<c:forEach items="${assessResultList}" var="data" varStatus="status">
+										<tr>
+											<td>${status.index+1}</td>
+											<td>${data.teacherRealName}</td>
+											<td>${data.teacherUserName}</td>
+											<td>${data.courseName}</td>
+											<td>${data.clazzId}</td>
+											<td>${data.avarage}</td>
+										    <td ><a href="admin/service/queryStudentAssessInfo?teacherId=${data.teacherId}&courseId=${data.courseId}&clazzId=${data.clazzId}" data-toggle="modal"
+												class="btn btn-primary">评教详情</a></td>
+										</tr>
+										</c:forEach>
+										
                                         </tbody>
                                     </table>
                                 </div>

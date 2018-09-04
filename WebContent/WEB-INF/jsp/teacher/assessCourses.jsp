@@ -8,13 +8,7 @@
 <html>
 <head>
 <base href="<%=sysPath + "/"%>">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>教师评教</title>
-<meta name="keywords" content="侧边导航菜单(可分组折叠)">
-<meta name="description" content="侧边导航菜单(可分组折叠)" />
-<meta name="HandheldFriendly" content="True" />
+<title>学生评教系统</title>
   <link rel="shortcut icon" href="images/favicon.ico">
 <link href="css/bootstrap.min.css?v=2" rel="stylesheet" media="screen">
 <link href="css/bootstrap-responsive.min.css?v=1" rel="stylesheet"
@@ -43,7 +37,7 @@
 					<!-- block -->
 					<div class="block">
 						<div class="navbar navbar-inner block-header">
-							<div class="muted pull-left">XX班级学生列表</div>
+							<div class="muted pull-left">班级评教情况</div>
 						</div>
 						<div class="block-content collapse in">
 

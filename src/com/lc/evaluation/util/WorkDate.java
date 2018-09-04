@@ -201,4 +201,13 @@ public class WorkDate {
 		DateTime dt = new DateTime(dateStr);
 		return dt.toDate();
 	}
+	
+	public static boolean isBefore(Date date1, Date date2){
+		DateTime dt = new DateTime(date1);
+		//date1时间在date2时间之前
+		if(date1.before(date2)){
+			return true;
+		}
+		return false;
+	}
 }

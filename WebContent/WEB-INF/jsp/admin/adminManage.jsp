@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String sysPath = request.getContextPath();
 %>
@@ -8,7 +9,7 @@
 <head>
 <base href="<%=sysPath+"/" %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
 <link href="css/bootstrap-responsive.min.css"
@@ -37,13 +38,13 @@
 					<!-- block -->
 					<div class="block">
 						<div class="navbar navbar-inner block-header">
-							<div class="muted pull-left">学生管理</div>
+							<div class="muted pull-left">管理员管理</div>
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
 								<div class="table-toolbar">
 									<div class="btn-group">
-										<a href="#"><button class="btn btn-success">
+										<a href="admin/service/adminAdd"><button class="btn btn-success">
 												Add New <i class="icon-plus icon-white"></i>
 											</button></a>
 									</div>
@@ -51,10 +52,10 @@
 										<button data-toggle="dropdown" class="btn dropdown-toggle">
 											Tools <span class="caret"></span>
 										</button>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu"><!-- 
 											<li><a href="#">Print</a></li>
 											<li><a href="#">Save as PDF</a></li>
-											<li><a href="#">Export to Excel</a></li>
+											<li><a href="#">Export to Excel</a></li> -->
 										</ul>
 									</div>
 								</div>
@@ -66,22 +67,21 @@
 											<th>序号</th>
 											<th>姓名</th>
 											<th>性别</th>
-											<th>班级</th>
-											<th>学号</th>
+											<th>工号</th>
 											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="odd gradeX">
-											<td>1</td>
-											<td>张三</td>
-											<td>男</td>
-											<td>152011</td>
-											<td class="center">15201124</td>
-											<td class="center"><a href="#myAlert"
-												data-toggle="modal" class="btn btn-danger">detele</a></td>
+										 <c:forEach items="${adminList}" var="data" varStatus="status">
+										<tr>
+											<td>${status.index+1}</td>
+											<td>${data.realName}</td>
+											<td>${data.sex}</td>
+											<td>${data.userName}</td>
+										    <td ><a href="admin/service/queryAdminById?id=${data.id}" data-toggle="modal"
+												class="btn btn-primary">个人信息</a></td>
 										</tr>
-
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -121,6 +121,9 @@
 		$(function() {
 
 		});
+		if('${msg}'!=''){
+		  window.alert('${msg}');
+        }
 	</script>
 </body>
 </html>

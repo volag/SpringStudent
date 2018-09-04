@@ -109,5 +109,74 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and t1.id=t2.id 
 		 	</where> 
 	</select>
+	
+	
+	<resultMap type="com.lc.evaluation.dto.response.AdminAssessAllResultDto" id="AdminAssessAllResultDto">
+		<result property="teacherRealName" column="teacher_real_name" />
+		<result property="teacherUserName" column="teacher_user_name" />
+		<result property="teacherId" column="teacher_id" />
+		<result property="courseNo" column="course_no" />
+		<result property="courseId" column="course_id" />
+		<result property="courseName" column="course_name" />
+		<result property="clazzId" column="clazz_id" />
+		<result property="avarage" column="average" />
+	</resultMap>
+	
+	
+	<select id="findAssessAllResult"  resultMap="AdminAssessAllResultDto">
+	
+			 select 
+				tu.real_name teacher_real_name , 
+				tu.user_name teacher_user_name, 
+				tu.id teacher_id,  
+				tcs.no course_no, 
+				tcs.id course_id,
+				tcs.name course_name , 
+				ts.grade_id clazz_id , 
+				Format(avg(ta.score),2) average 
+				
+				from t_core tc
+	 
+						join t_teacher tt on tt.id = tc.t_teacher_id
+						join t_user tu on tu.id = tc.t_teacher_id
+						join t_course tcs on tcs.id = tc.t_course_id  
+						join t_student ts on ts.id = tc.t_student_id
+						join t_assess ta on ta.id = tc.id
+		 
+							group by tc.t_teacher_id , tc.t_course_id , ts.grade_id
+		 
+	
+	</select>
 
+    <resultMap type="com.lc.evaluation.dto.response.AdminAssessAllAdviceDto" id="AdminAssessAllAdviceDto">
+		<result property="teacherRealName" column="teacher_real_name" />
+		<result property="teacherUserName" column="teacher_user_name" />
+		<result property="studentRealName" column="student_real_name" />
+		<result property="studentUserName" column="student_user_name" />
+		<result property="courseName" column="course_name" />
+		<result property="advice" column="advice" />
+	</resultMap>
+	
+	
+	<select id="findAssessAllAdvice"  resultMap="AdminAssessAllAdviceDto">
+	
+			 select 
+				tu.real_name teacher_real_name, 
+				tu.user_name teacher_user_name, 
+				tp.real_name student_real_name, 
+				tp.user_name student_user_name, 
+				tcs.name course_name , 
+                ta.advice advice				
+				
+				from t_core tc
+	 
+						join t_teacher tt on tt.id = tc.t_teacher_id
+						join t_user tu on tu.id = tc.t_teacher_id
+						join t_user tp on tp.id = tc.t_student_id
+						join t_course tcs on tcs.id = tc.t_course_id  
+						join t_student ts on ts.id = tc.t_student_id
+						join t_assess ta on ta.id = tc.id
+						
+						where ta.advice is not null
+	</select>
 </mapper> 

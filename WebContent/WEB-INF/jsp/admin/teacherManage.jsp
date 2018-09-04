@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%
 	String sysPath = request.getContextPath();
 %>
@@ -8,7 +10,7 @@
 <head>
 <base href="<%=sysPath+"/" %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
         <link href="css/styles.css" rel="stylesheet" media="screen">
@@ -62,14 +64,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX">
-                                                <td>1</td>
-                                                <td>王明</td>
-                                                <td>1111111</td>
-                                                 <td ><a href="admin/personMessage" data-toggle="modal"
+                                         <c:forEach items="${teacherList}" var="data" varStatus="status">
+										<tr>
+											<td>${status.index+1}</td>
+											<td>${data.realName}</td>
+											<td>${data.userName}</td>
+										    <td ><a href="admin/service/queryTeacherById?teacherId=${data.id}" data-toggle="modal"
 												class="btn btn-primary">个人信息</a></td>
-                                            </tr>
-                                           
+										</tr>
+										</c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

@@ -1,18 +1,11 @@
 package com.lc.evaluation.service.basic;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.springframework.stereotype.Component;
 
 import com.lc.evaluation.dao.basic.BasicMapper;
 import com.lc.evaluation.dao.basic.BasicUserMapper;
 import com.lc.evaluation.dto.basic.BasicRequestUserDto;
-import com.lc.evaluation.entity.Core;
 import com.lc.evaluation.entity.basic.EntityUser;
 
-//@Component
 public abstract class AbstractUserService<T extends EntityUser>
 	extends AbstractService<T> implements BasicUserService<T>{
 	
@@ -21,7 +14,6 @@ public abstract class AbstractUserService<T extends EntityUser>
 	public AbstractUserService(BasicUserMapper<T> userMapper) {
 		super((BasicMapper<T>) userMapper);
 		this.userMapper = userMapper;
-//		super.basicMapper = (BasicMapper<T>) userMapper;
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String sysPath = request.getContextPath();
 %>
@@ -8,7 +9,7 @@
 <head>
 <base href="<%=sysPath + "/"%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
 	media="screen">
@@ -38,28 +39,46 @@
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
-
+                                <div class="table-toolbar">
+									 <div class="btn-group">
+										<a href="#"><button class="btn btn-success">
+												 <i class="icon-plus icon-white"></i>
+											</button></a>
+									</div> 
+									<div class="btn-group pull-right">
+										<button data-toggle="dropdown" class="btn dropdown-toggle">
+											条件查询 <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="admin/service/queryTodayLogs">一天之内</a></li>
+											<li><a href="admin/service/query7DayLogs">一周之内</a></li>
+											<li><a href="admin/service/queryThisMonthLogs">一个月之内</a></li>
+										</ul>
+									</div>
+								</div>
 								<table cellpadding="0" cellspacing="0" border="0"
-									class="table table-striped table-bordered" id="example">
+									class="table table-striped table-bordered" id="example2">
 									<thead>
 										<tr>
-											<th>编号</th>
-											<th>姓名</th>
 											<th>工号</th>
-											<th>用户类型</th>
+											<th>类型</th>
+											<th>操作</th>
+											<th>结果</th>
 											<th>开始时间</th>
 											<th>结束时间</th>
 										</tr>
 									</thead>
 									<tbody>
+										 <c:forEach items="${logList}" var="data" varStatus="status">
 										<tr>
-											<td>1</td>
-											<td>张三</td>
-											<td>15201101</td>
-											<td>学生</td>
-											<td>五月 28, 2018 12:47:44</td>
-											<td>五月 28, 2018 12:50:47</td>
+											<td>${data.userName}</td>
+											<td>${data.userType}</td>
+											<td>${data.action}</td>
+											<td>${data.isSuccess}</td>
+											<td>${data.startTime}</td>
+											<td>${data.endTime}</td>
 										</tr>
+										</c:forEach>
 									
 									</tbody>
 								</table>

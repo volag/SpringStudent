@@ -9,7 +9,7 @@
 <head>
 <base href="<%=sysPath+"/" %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>学生评教</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css?v=1" rel="stylesheet"
 	media="screen">
 <link href="css/bootstrap-responsive.min.css?v=1"

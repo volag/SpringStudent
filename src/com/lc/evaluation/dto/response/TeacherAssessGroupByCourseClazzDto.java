@@ -21,7 +21,7 @@ public class TeacherAssessGroupByCourseClazzDto {
 	}
 
 	public TeacherAssessGroupByCourseClazzDto() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public TeacherAssessGroupByCourseClazzDto(String clazzId, String courseNo, String courseName, Float scoreAverage) {
@@ -63,5 +63,12 @@ public class TeacherAssessGroupByCourseClazzDto {
 	public void setScoreAverage(Float scoreAverage) {
 		this.scoreAverage = scoreAverage;
 	}
+
+	@Override
+	public String toString() {
+		return "TeacherAssessGroupByCourseClazzDto [clazzId=" + clazzId + ", courseNo=" + courseNo + ", courseId="
+				+ courseId + ", courseName=" + courseName + ", scoreAverage=" + scoreAverage + "]";
+	}
+	
 	
 }

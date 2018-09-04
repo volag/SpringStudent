@@ -128,7 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			tcs.name, 
 			ts.grade_id, 
 			tcs.id course_id, 
-			avg(ta.score)
+			Format(avg(ta.score),2) score_average
 				 from t_core tc
 					join t_course tcs 
 						on tcs.id = tc.t_course_id

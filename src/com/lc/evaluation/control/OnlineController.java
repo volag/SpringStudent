@@ -1,7 +1,9 @@
 package com.lc.evaluation.control;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.lc.evaluation.control.util.MsgType;
 import com.lc.evaluation.dto.request.UserLoginDto;
 import com.lc.evaluation.service.impl.StudentServiceImpl;
 
@@ -20,11 +23,17 @@ public class OnlineController {
 
 	@Autowired
 	StudentServiceImpl service;
+	
+	@RequestMapping(value = "/loginPage", method = { RequestMethod.GET })
+	public String loginPage(String error, Model model) {
+		log.info("loginController loginPage");
+		model.addAttribute(MsgType.error, error);
+		return "login";
+	}
 
 	@RequestMapping(value = "/login", method = { RequestMethod.POST })
-	public String login(@ModelAttribute UserLoginDto userDto, Model model) {
+	public String loginA(@ModelAttribute UserLoginDto userDto, Model model) {
 		log.info("loginController login");
-		log.info(userDto.getUserType());
 		if (userDto.getUserType() != null) {
 			model.addAttribute(userDto);
 			switch (userDto.getUserType()) {
@@ -40,8 +49,8 @@ public class OnlineController {
 	}
 
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET})
-	public String logout(SessionStatus sessionStatus) {
-		sessionStatus.setComplete();
+	public String logout(HttpServletRequest request) {
+		request.getSession().invalidate();
 		return "redirect:/";
 	}
 }

@@ -5,7 +5,7 @@ import com.lc.evaluation.entity.basic.EntityMine;
 public class Assess implements EntityMine{
 
 	private Integer id;
-	private float score;
+	private Float score;
 	private String advice;
 	
 	@Override
@@ -18,11 +18,11 @@ public class Assess implements EntityMine{
 		this.id = id;
 	}
 
-	public float getScore() {
+	public Float getScore() {
 		return score;
 	}
 
-	public void setScore(float score) {
+	public void setScore(Float score) {
 		this.score = score;
 	}
 

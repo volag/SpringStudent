@@ -3,16 +3,18 @@ package com.lc.evaluation.service;
 import java.util.Date;
 import java.util.List;
 
-import com.lc.evaluation.entity.Log;
+import com.lc.evaluation.dto.response.LogDto;
 
 public interface LogService {
 	
-	List<Log> queryTodayLogs();
+	List<LogDto> queryTodayLogs(Date date);
 	
-	List<Log> query7DayLogs();
+	List<LogDto> query7DayLogs(Date date);
 	
-	List<Log> queryThisMonthLogs();
+	List<LogDto> queryThisMonthLogs(Date date);
 	
-	List<Log> queryByTimeSection(Date startTime, Date endTime);
+	List<LogDto> queryByTimeSection(Date startTime, Date endTime);
+
+	List<LogDto> queryAllTime();
 
 }

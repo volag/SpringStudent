@@ -13,6 +13,16 @@ public class Log implements EntityMine{
 	private String userName;
 	private String realName;
 	private Integer userType;
+	private Boolean isSuccess;
+	
+	public Boolean getIsSuccess() {
+		return isSuccess;
+	}
+
+	public void setIsSuccess(Boolean isSuccess) {
+		this.isSuccess = isSuccess;
+	}
+
 	@Override
 	public Integer getId() {
 		return id;

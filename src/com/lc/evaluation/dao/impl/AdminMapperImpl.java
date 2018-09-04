@@ -2,13 +2,14 @@ package com.lc.evaluation.dao.impl;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lc.evaluation.dao.AdminMapper;
 import com.lc.evaluation.dao.UserMapper;
+import com.lc.evaluation.dto.response.AdminAssessAllAdviceDto;
+import com.lc.evaluation.dto.response.AdminAssessAllResultDto;
 import com.lc.evaluation.entity.Admin;
 import com.lc.evaluation.util.PageUtil;
 
@@ -79,9 +80,32 @@ public class AdminMapperImpl implements AdminMapper{
 		return null;
 	}
 
+	/*
+	 *通过map查询管理员 
+	 */
 	@Override
 	public List<Admin> findByMap(Admin entity) {
 		return adminMapper.findByMap(entity);
 	}
+	
+	/*
+	 * 查询所有的评价结果
+	 * 显示每个老师对应课程的总平均分
+	 */
+	@Override
+	public List<AdminAssessAllResultDto> findAssessAllResult(){
+		return adminMapper.findAssessAllResult();
+	}
+	
+	/*
+	 * 查询所有的评价结果
+	 * 显示每个老师对应课程的总平均分
+	 */
+	@Override
+	public List<AdminAssessAllAdviceDto> findAssessAllAdvice(){
+		return adminMapper.findAssessAllAdvice();
+	}
+	
+	
 
 }

@@ -9,10 +9,10 @@
                         </li>
                       
                         <li>
-                            <a href="teacher/service/main"><i class="icon-chevron-right"></i> 评教结果</a>
+                            <a href="teacher/main"><i class="icon-chevron-right"></i> 评教结果</a>
                         </li>
                         <li>
-                            <a href="teacher/service/assessAdvice"><i class="icon-chevron-right"></i> <span class="badge badge-important pull-right">83</span>意见箱</a>
+                            <a href="teacher/service/assessAdvice"><i class="icon-chevron-right"></i> <span class="badge badge-important pull-right"></span>意见箱</a>
                         </li>
                     </ul>
                 </div>

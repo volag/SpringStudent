@@ -14,6 +14,10 @@ public interface CanQueryQuestionAndAnswer {
 	 */
 	List<QuestionAndAnswerRespDto> queryQuestionAndAnswer(Integer assessId);
 
-	
+	/**
+	 * 通过评教id查询建议信息
+	 * @param assessId
+	 * @return
+	 */
 	String queryAssessAdvice(Integer assessId);
 }

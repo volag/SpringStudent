@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String sysPath = request.getContextPath();
 %>
@@ -8,7 +9,7 @@
 <head>
 <base href="<%=sysPath + "/"%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
 	media="screen">
@@ -43,54 +44,27 @@
 									class="table table-striped table-bordered" id="example">
 									<thead>
 										<tr>
-											<th>编号</th>
 											<th>意见人</th>
 											<th>学号</th>
 											<th>教师</th>
 											<th>工号</th>
+											<th>课程名</th>
 											<th>意见信息</th>
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach items="${adviceList}" var="data" varStatus="status">
 										<tr>
-											<td>1</td>
-											<td>张三</td>
-											<td>15201101</td>
-											<td>刘明老师</td>
-											<td>1111111</td>
+											<td>${data.studentRealName}</td>
+											<td>${data.studentUserName}</td>
+											<td>${data.teacherRealName}</td>
+											<td>${data.teacherUserName}</td>
+											<td>${data.courseName}</td>
 											<td><textarea class="input-xlarge disabled"
 													id="disabledInput" type="text"
-													placeholder="老师和蔼可亲"
-													disabled=""></textarea></td>
-											
-
+													disabled="">${data.advice}</textarea></td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>王二</td>
-											<td>15201101</td>
-											<td>张衡老师</td>
-											<td>1111111</td>
-											<td><textarea class="input-xlarge disabled"
-													id="disabledInput" type="text"
-													placeholder="老师上课认真"
-													disabled=""></textarea></td>
-											<!-- <td ><a href="#myAlert" data-toggle="modal" class="btn btn-danger">detele</a></td> -->
-										</tr>
-
-										<!-- <div id="myAlert" class="modal hide">
-											<div class="modal-header">
-												<button data-dismiss="modal" class="close" type="button">&times;</button>
-												<h3 style="color:red">操作警告！</h3>
-											</div>
-											<div class="modal-body">
-												<p>您是否要删除这条信息？</p>
-											</div>
-											<div class="modal-footer">
-												<a data-dismiss="modal" class="btn btn-primary" href="#">确认</a>
-												<a data-dismiss="modal" class="btn" href="#">取消</a>
-											</div>
-										</div> -->
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

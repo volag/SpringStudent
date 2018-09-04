@@ -62,7 +62,7 @@ public class AssessMapperTest {
 	public void testUpdate() {
 		Assess assess = new Assess();
 		assess.setId(3);
-		assess.setScore(92);
+//		assess.setScore(92);
 		assess.setAdvice("顶呱呱！");
 		as.update(assess);
 	}
@@ -71,7 +71,7 @@ public class AssessMapperTest {
 	public void testAdd() {
 		Assess assess = new Assess();
 		assess.setId(4);
-		assess.setScore(92);
+//		assess.setScore(92);
 		assess.setAdvice("顶呱呱！");
 		as.add(assess);
 	}
@@ -80,11 +80,11 @@ public class AssessMapperTest {
 	public void testAddAll() {
 		Assess assess = new Assess();
 		assess.setId(4);
-		assess.setScore(92);
+//		assess.setScore("92");
 		assess.setAdvice("顶呱呱！");
 		Assess assess1 = new Assess();
 		assess1.setId(5);
-		assess1.setScore(56);
+//		assess1.setScore(56);
 		assess1.setAdvice("顶呱呱1！");
 		Collection<Assess> assessList = new ArrayList<>();
 		assessList.add(assess);

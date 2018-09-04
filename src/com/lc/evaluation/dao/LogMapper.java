@@ -16,6 +16,7 @@ public interface LogMapper extends BasicMapper<Log>{
 	 * @param endTime 查询结束时间
 	 * @return
 	 */
+	
 	List<Log> findByTimeSection(Date startTime, Date endTime);
 
 }

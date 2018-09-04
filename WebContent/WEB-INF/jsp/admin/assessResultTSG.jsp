@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%
 	String sysPath = request.getContextPath();
 %>
@@ -8,7 +10,7 @@
 <head>
 <base href="<%=sysPath+"/" %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
         <link href="css/styles.css" rel="stylesheet" media="screen">
@@ -49,14 +51,17 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-											    <td>1</td>
-												<td>刘明</td>
-												<td>15201101</td>
-												<td>95</td>
-											<td ><a href="admin/msg" data-toggle="modal"
-												class="btn btn-primary">评教详情</a></td>
-												</tr>
+										<c:forEach items="${studentAssessInfoList}" var="data" varStatus="status">
+										<tr>
+											<td>${status.index+1}</td>
+											<td>${data.studentRealName}</td>
+											<td>${data.studentUserName}</td>
+											<td>${data.assessCore}</td>
+											<%-- <td>${data.advice}</td> --%>
+										    <td ><a href="admin/service/studentAssessInfo?coreId=${data.coreId}" data-toggle="modal"
+												class="btn btn-primary">详细信息</a></td>
+										</tr>
+										</c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

@@ -8,13 +8,7 @@
 <html>
 <head>
 <base href="<%=sysPath + "/"%>">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>教师评教</title>
-<meta name="keywords" content="侧边导航菜单(可分组折叠)">
-<meta name="description" content="侧边导航菜单(可分组折叠)" />
-<meta name="HandheldFriendly" content="True" />
+<title>学生评教系统</title>
   <link rel="shortcut icon" href="images/favicon.ico">
 <link href="css/bootstrap.min.css?v=2" rel="stylesheet" media="screen">
 <link href="css/bootstrap-responsive.min.css?v=1" rel="stylesheet"
@@ -69,7 +63,7 @@
 											<td>${data.studentRealName }</td>
 											<td>${data.studentUserName }</td>
 											<td class="center">${data.assessCore }</td>
-											<td ><a href="teacher/service/assessStudentInfo?coreId=${data.coreId }" data-toggle="modal"
+											<td ><a href="teacher/service/studentAssessInfo?coreId=${data.coreId }" data-toggle="modal"
 												class="btn btn-primary">学生评教详情</a></td>
 										</tr>
 									</c:forEach>

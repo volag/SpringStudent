@@ -12,7 +12,7 @@
 					<ul class="nav pull-right">
 						<li class="dropdown"><a  role="button"
 							class="dropdown-toggle" data-toggle="dropdown"> <i
-								class="icon-user"></i> ${userType.realName}学生<i class="caret"></i>
+								class="icon-user"></i> 欢迎${userType.realName}<i class="caret"></i>
 						</a>
 							<ul class="dropdown-menu">
 								<li><a tabindex="-1">Profile</a></li>
@@ -22,11 +22,11 @@
 					</ul>
 					<ul class="nav">
 						<li class="active"><a >Dashboard</a></li>
-						<li><a href="student/service/msg" >个人信息</b>
+						<li><a href="student/service/msg" >个人信息
 						</a></li>
-							<li><a href="student/service/changepasswordPage" >修改密码</b>
+							<li><a href="student/service/changePasswordPage">修改密码
 						</a></li>
-						<li><a >其他</b>
+						<li><a >其他
 						</a></li>
 
 					</ul>

@@ -1,7 +1,8 @@
 package com.lc.evaluation.control.admin;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +28,19 @@ public class AdminOnlineStatusController {
 	@Autowired
 	AdminServiceImpl service;
 	
+	/**
+	 * 验证登录信息
+	 * @param userDto
+	 * @param error
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/login", method = { RequestMethod.POST })
 	public String login(
 			@ModelAttribute UserLoginDto userDto, 
-			String error, Model model) {
+			String error, Model model, HttpServletRequest request) {
 		log.info("admin login");
 		log.info("userName " + userDto.getUserName());
 		log.info("password " + userDto.getPassword());
@@ -42,9 +52,11 @@ public class AdminOnlineStatusController {
 			Admin adm = service.findByUserName(userDto.getUserName());
 			System.out.println("tea : " + adm);
 			model.addAttribute(UserType.userType, adm);
+			request.getSession().setAttribute(UserType.userType, adm);
 			return "redirect:admin/main";
 		}
-		return "forward:login?error='用户名或密码错误'";
+		model.addAttribute(MsgType.error, "用户名或密码错误!");
+		return "redirect:loginPage";
 	}
 
 }

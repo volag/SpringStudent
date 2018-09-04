@@ -13,6 +13,7 @@ import com.lc.evaluation.dao.CoreMapper;
 import com.lc.evaluation.dao.CourseMapper;
 import com.lc.evaluation.dao.impl.StudentMapperImpl;
 import com.lc.evaluation.dao.impl.TeacherMapperImpl;
+import com.lc.evaluation.dto.response.QuestionAndAnswerRespDto;
 import com.lc.evaluation.dto.response.TeacherAssessDto;
 import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzDto;
 import com.lc.evaluation.dto.response.TeacherAssessGroupByCourseClazzStudentDto;
@@ -101,6 +102,7 @@ public class TeacherServiceImpl extends AbstractUserService<Teacher>
 	public List<TeacherAssessGroupByCourseClazzStudentDto> 
 		queryAssessGroupByCourseClazzStudent(Integer teacherId,
 			Integer courseId, String clazzId) {
+		
 		if(courseId != null)
 			return teacherMapper.queryAssessGroupByCourseClazzStudent(
 					teacherId, courseId, clazzId);
@@ -128,6 +130,7 @@ public class TeacherServiceImpl extends AbstractUserService<Teacher>
 		return classDtos;
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public List<TeacherCourseClazzStudentDto> 
 		queryCourseClazzStudentAssess(Integer teacherId, Integer courseId,
@@ -148,6 +151,14 @@ public class TeacherServiceImpl extends AbstractUserService<Teacher>
 					new TeacherCourseClazzStudentDto(a.getScore(), a.getAdvice()));
 		}
 		return list;
+	}
+	
+	@Autowired
+	StudentServiceImpl studentServiceImpl;
+	
+	@Override
+	public List<QuestionAndAnswerRespDto> queryQuestionAndAnswer(Integer assessId){
+		return studentServiceImpl.queryQuestionAndAnswer(assessId);
 	}
 	
 	

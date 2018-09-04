@@ -17,11 +17,9 @@ import com.lc.evaluation.dao.impl.TeacherMapperImpl;
 import com.lc.evaluation.dto.request.AnswerRequestDto;
 import com.lc.evaluation.dto.response.QuestionAndAnswerRespDto;
 import com.lc.evaluation.dto.response.StudentCourseRespDto;
-import com.lc.evaluation.entity.Answer;
 import com.lc.evaluation.entity.Assess;
 import com.lc.evaluation.entity.Core;
 import com.lc.evaluation.entity.Course;
-import com.lc.evaluation.entity.Question;
 import com.lc.evaluation.entity.Student;
 import com.lc.evaluation.entity.Teacher;
 import com.lc.evaluation.service.StudentService;
@@ -50,12 +48,20 @@ public class StudentServiceImpl extends AbstractUserService<Student>
 	@Autowired
 	TeacherMapperImpl teacherMapper;
 
+	/*
+	 * 查询学生的所有课程信息
+	 * 
+	 */
 	@Override
 	public List<StudentCourseRespDto> queryCourses(Integer id) {
 
 		return queryCoursesByType(id, null);
 	}
 
+	/*
+	 * 查询学生的课程信息通过课程类型
+	 * 
+	 */
 	@Override
 	public List<StudentCourseRespDto> queryCoursesByType(Integer id, String courseType) {
 
@@ -63,19 +69,33 @@ public class StudentServiceImpl extends AbstractUserService<Student>
 		Core co = new Core();
 		co.setStudentId(id);
 		List<Core> cores = coreMapper.findByMap(co);
-//		System.out.println("cores : " + cores.size());
+		System.out.println("cores : " + cores.size());
 		for (Core core : cores) {
 			Course course = courseMapper.findById(core.getCourseId());
 			Teacher tea = teacherMapper.findById(core.getTeacherId());
-			listDto.add(new StudentCourseRespDto(core.getId(), course.getName(), course.getType(), tea.getRealName()));
+			if (courseType == null) {
+				listDto.add(new StudentCourseRespDto(core.getId(), course.getName(), course.getType(), tea.getRealName()));
+			}else{
+				if (course.getType().equals(courseType)) {
+					listDto.add(new StudentCourseRespDto(core.getId(), course.getName(), course.getType(), tea.getRealName()));
+				}
+			}
+			
 		}
-		if (courseType != null) {
-			for (StudentCourseRespDto t : listDto) {
-				if (!t.getCourseType().equals(courseType)) {
+		
+		/*if (courseType != null) {
+			for(int i = 0;i < listDto.size(); i ++){
+				StudentCourseRespDto t = listDto.get(i);
+				if (! t.getCourseType().equals(courseType)) {
 					listDto.remove(t);
 				}
 			}
-		}
+//			for (StudentCourseRespDto t : listDto) {
+//				if (! t.getCourseType().equals(courseType)) {
+//					listDto.remove(t);
+//				}
+//			}
+		}*/
 		return listDto;
 	}
 
@@ -84,6 +104,10 @@ public class StudentServiceImpl extends AbstractUserService<Student>
 	@Autowired
 	QuestionMapper questionMapper;
 
+	/*
+	 *提交学生的评价结果
+	 *
+	 */
 	@Override
 	public void submitAssessQuestionAndAnswer(List<Integer> answerIds, List<String> answers) {
 
@@ -108,7 +132,9 @@ public class StudentServiceImpl extends AbstractUserService<Student>
 	@Autowired
 	AssessMapper assessMapper;
 	
-	
+	/*
+	 *提交学生的意见信息和答案 
+	 */
 	@Override
 	public void submitAdviceAndCore(Integer assessId ,List<String> answers, String advice){
 		
@@ -118,28 +144,40 @@ public class StudentServiceImpl extends AbstractUserService<Student>
 		assess.setId(assessId);
 		assess.setAdvice(advice);
 		assess.setScore(sumCore);
-System.out.println(assess);
 		assessMapper.update(assess);
 	}
 	
 	@Autowired
 	AdminServiceImpl adminServiceImpl;
 
+	
 	@Override
 	public List<QuestionAndAnswerRespDto> queryQuestionAndAnswer(Integer assessId) {
 		return adminServiceImpl.queryQuestionAndAnswer(assessId);
 	}
 	
-	
+	/*
+	 * 通过评教开放时间来判断是否能评教
+	 * 
+	 */
 	@Override
-	public boolean isAssess(Integer studentId) {
-		Student stu = studentMapper.findById(studentId);
-		if (stu.getIsAssess() == 0) {
+	public boolean isCourseAssess(Integer assessId) {
+		Assess assess = assessMapper.findById(assessId);
+		Float score = assess.getScore();
+//		Student stu = studentMapper.findById(studentId);
+		if (score == null) {
 			return true;
 		}
 		return false;
 	}
 
+	
+	
+	
+	/*
+	 *查询单条评教建议 
+	 * 
+	 */
 	@Override
 	public String queryAssessAdvice(Integer assessId) {
 		return adminServiceImpl.queryAssessAdvice(assessId);

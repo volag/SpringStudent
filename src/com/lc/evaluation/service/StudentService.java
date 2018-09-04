@@ -23,7 +23,7 @@ public interface StudentService {
 	 */
 	void submitAssessQuestionAndAnswer(List<Integer> answerIds, List<String> answers);
 	
-	boolean isAssess(Integer studentId);
+	boolean isCourseAssess(Integer studentId);
 
 	void submitAdviceAndCore(Integer assessId, List<String> answers, String advice);
 	

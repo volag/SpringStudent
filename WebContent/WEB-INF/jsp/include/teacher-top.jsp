@@ -12,7 +12,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>${userType.realName}教师<i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>欢迎${userType.realName}！<i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -31,7 +31,7 @@
                                 <a href="#">Dashboard</a>
                             </li>
                             <li >
-                                <a href="teacher/personMessage" >个人信息</b>
+                                <a href="teacher/service/msg" >个人信息</b>
                                 </a>
                          
                             </li>

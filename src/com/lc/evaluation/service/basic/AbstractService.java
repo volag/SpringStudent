@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lc.evaluation.dao.basic.BasicMapper;
+import com.lc.evaluation.dto.response.AdminAssessAllAdviceDto;
 import com.lc.evaluation.entity.basic.EntityMine;
 import com.lc.evaluation.util.PageUtil;
 
@@ -25,7 +26,6 @@ implements BasicService<T> {
 
 	@Override
 	final public void update(T entity) {
-//		T entity = dto.create();
 		basicMapper.update(entity);
 	}
 	
@@ -53,5 +53,6 @@ implements BasicService<T> {
 	final public PageUtil<T> queryPage(Integer page) {
 		return basicMapper.findByPage(page);
 	}
+
 
 }

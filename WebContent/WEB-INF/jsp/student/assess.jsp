@@ -9,7 +9,9 @@
 <head>
 <base href="<%=sysPath + "/"%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>学生评教</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css?v=1" rel="stylesheet" media="screen">
 <link href="css/bootstrap-responsive.min.css?v=1" rel="stylesheet"
 	media="screen">
@@ -43,20 +45,22 @@
 				<div class="row-fluid">
 					<!-- block -->
 					<div class="block">
-						<div class="navbar navbar-inner block-header">
+						<!-- <div class="navbar navbar-inner block-header">
 							<div class="muted pull-left">王明老师评教</div>
-						</div>
+						</div> -->
 						<div class="block-content collapse in">
 							<div class="span12">
+							   <fieldset>
+                                        <legend>评教</legend>
 								<form class="form-horizontal" action="student/service/assessSubmit"
-								 method="post">
+								 method="post" onsubmit="return checkForm()">
 
 									<input type="hidden" name="assessId" value="${assessId}">
 									<c:forEach items="${questions}" var="data" varStatus="status">
 
 										<input type="hidden" name="answerId" value="${data.answerId}">
 
-										<p>${status.index+1}.${data.questionContext}</p>
+										<p>${data.questionContext}</p>
 										<div class="radio">
 											<label for="a${status.index+1}" class="radio2"> <span>A</span><input
 												id="a${status.index+1}" type="radio" name="answer${status.index+1}" value="A">优秀
@@ -79,7 +83,7 @@
 										<label class="control-label" for="textarea2">意见内容 </label>
 										<div class="controls">
 											<textarea class="input-xlarge textarea"
-												placeholder="Enter text ..." name="advice"
+												placeholder="Enter text ..." name="advice" id="advice"
 												style="width: 300px; height: 60px"></textarea>
 										</div>
 									</div>
@@ -87,7 +91,9 @@
 										<button type="submit" class="btn btn-primary">提交</button>
 										<button type="reset" class="btn">取消</button>
 									</div>
+									
 								</form>
+								</fieldset>
 							</div>
 						</div>
 					</div>
@@ -109,11 +115,19 @@
 	<script src="js/DT_bootstrap.js"></script>
 	<script>
 		$(function() {
-			// Easy pie charts
 			$('.chart').easyPieChart({
 				animate : 1000
 			});
 		});
+		if('${msg}'!=''){
+           window.alert('${msg}');
+         }
+         function checkForm() {
+			var advice = $("#advice").val();
+			if(advice==null||advice==''){
+			   window.alert("意见信息不能为空！");
+			}
+			}
 	</script>
 </body>
 

@@ -8,7 +8,7 @@
 <head>
 <base href="<%=sysPath+"/" %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>管理员模块</title>
+<title>学生评教系统</title>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
         <link href="css/styles.css" rel="stylesheet" media="screen">
@@ -38,38 +38,42 @@
 						</div>
 						<div class="block-content collapse in">
 							<div class="span12">
-								     <form class="form-horizontal">
-                                      <fieldset>
+								     <form class="form-horizontal" action="admin/service/changePassword" method="post" onsubmit="return checkForm()">
+                                       <fieldset>
                                         <legend>填写信息</legend>
-                                    
-                                        <div class="control-group">
-                                          <label class="control-label" for="disabledInput">账号：</label>
-                                          <div class="controls">
-                                            <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="15201124" disabled="">
-                                          </div>
-                                        </div>
-                                        
-                                        <div class="control-group warning">
-                                          <label class="control-label" for="inputError">新密码：</label>
-                                          <div class="controls">
-                                            <input type="text" id="inputError">
-                                            <span class="help-inline">密码不能为空！</span>
-                                          </div>
-                                        </div>
-                                       
-                                        <div class="control-group success">
-                                          <label class="control-label" for="inputError">确认密码：</label>
-                                          <div class="controls">
-                                            <input type="text" id="inputError">
-                                            <span class="help-inline">请输入相同的密码！</span>
-                                          </div>
-                                        </div>
-                                        
-                                        <div class="form-actions">
-                                          <button type="submit" class="btn btn-primary">Save changes</button>
-                                          <button type="reset" class="btn">Cancel</button>
-                                        </div>
-                                      </fieldset>
+                                       <div class="control-group">
+                                         <label class="control-label" for="inputError"></label>
+                                        <span class="help-inline"><font color="red" id="error"></font></span>
+                                        </div>   
+                                          <div class="control-group">
+											<label class="control-label" for="inputError">原密码：</label>
+											<div class="controls">
+												<input id="oldPassword" type="text" name="oldPassword">
+												<span class="help-inline"><font color="red" id="error"></font></span>
+											</div>
+										</div>
+
+										<div class="control-group warning">
+											<label class="control-label" for="inputError">新密码：</label>
+											<div class="controls">
+												<input type="text" id="newPassword" name="newPassword">
+												<span class="help-inline"><font color="red" id="error2"></font></span>
+											</div>
+										</div>
+
+										<div class="control-group success">
+											<label class="control-label" for="inputError">确认密码：</label>
+											<div class="controls">
+												<input type="text" id="newPassword1"> <span
+													class="help-inline"><font color="red" id="error3"></font></span>
+											</div>
+										</div>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">Save
+												changes</button>
+											<button type="reset" class="btn">Cancel</button>
+										</div>
+										</fieldset>
                                     </form>
 
 							</div>
@@ -98,6 +102,46 @@
         $(function() {
             
         });
+        if('${msg}'!=''){
+		  window.alert('${msg}');
+        } 
+        function checkForm() {
+			var oldPassword = $("#oldPassword").val();
+			var newPassword = $("#newPassword").val();
+			var newPassword1 = $("#newPassword1").val();
+			 if (oldPassword == null || oldPassword == "") {
+				$("#error").html("原密码不能为空！");
+				return false;
+			}
+			if (oldPassword.length < 6 || oldPassword.length > 8) {
+				$("#error").html("密码长度为6-8位！");
+				return false;
+			}
+	
+			if (newPassword == null || newPassword == "") {
+				$("#error").html("新密码不能为空！");
+				return false;
+			}
+	
+			if (newPassword.length < 6 || newPassword.length > 8) {
+				$("#error").html("新密码长度为6-8位！");
+				return false;
+			}
+			if (newPassword1 == null || newPassword1 == "") {
+				$("#error").html("确认密码不能为空！");
+				return false;
+			}
+	
+			if (newPassword1.length < 6 || newPassword1.length > 8) {
+				$("#error").html("确认密码长度为6-8位！");
+				return false;
+			} 
+			if(newPassword != newPassword1 ){
+			    $("#error").html("两次输入的密码不相同！");
+				return false;
+			}
+			return true;
+		}
         </script>
     </body>
 </html>

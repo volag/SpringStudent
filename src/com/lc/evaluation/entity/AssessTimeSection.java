@@ -11,7 +11,7 @@ import com.lc.evaluation.entity.basic.EntityMine;
  */
 public class AssessTimeSection implements EntityMine{
 
-	private Integer id;
+	private Integer id = 1;
 	private Date startTime; 
 	private Date endTime;
 	
